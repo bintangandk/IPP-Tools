@@ -25,6 +25,13 @@
     .btn-spacing {
       margin-right: 10px;
     }
+
+    /* Styling untuk preview image */
+    #image-preview {
+      margin-top: 10px;
+      max-width: 300px;
+      max-height: 300px;
+    }
   </style>
 </head>
 

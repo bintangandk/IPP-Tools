@@ -33,6 +33,10 @@ Route::get('/registered-partner', function () {
     return view('page.registered-partner.data-partner');
 });
 
+Route::get('/create-partner', function () {
+    return view('page.registered-partner.create-partner');
+});
+
 Route::get('/deleted-partner', function () {
     return view('page.deleted-partner.data-deleted');
 });
