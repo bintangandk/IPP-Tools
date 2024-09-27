@@ -67,11 +67,13 @@
                                 <i class="bi bi-download"></i>
                                 Export Partner
                             </button>
-                            <a type="button" class="btn btn-primary" href="#">
-                                <i class="bi bi-person"></i>
-                                <i class="bi bi-plus"></i>
-                                Create New Partner
-                            </a>
+                          @if (Auth::user()->role == 'Admin')
+                          <a type="button" class="btn btn-primary" href="#">
+                            <i class="bi bi-person"></i>
+                            <i class="bi bi-plus"></i>
+                            Create New Partner
+                        </a>
+                          @endif
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -105,110 +107,12 @@
                                                 <i class="bi bi-pencil"></i>
                                                 Edit
                                             </button>
+                                            @if (Auth::user()->role == 'Admin')
                                             <button class="btn btn-danger">
                                                 <i class="bi bi-trash"></i>
                                                 Hapus
                                             </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">19/09/2024</td>
-                                        <td class="text-center">84681</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">19/09/2024</td>
-                                        <td class="text-center">84681</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">19/09/2024</td>
-                                        <td class="text-center">84681</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">19/09/2024</td>
-                                        <td class="text-center">84681</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                Show File
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 </tbody>
@@ -221,4 +125,5 @@
     </div>
 </div>
 
+@include('sweetalert::alert')
 @endsection

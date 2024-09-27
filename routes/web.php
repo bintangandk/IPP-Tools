@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,29 +18,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login.get');
 
-Route::get('/dashboard', function () {
-    return view('page.dashboard');
-});
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/management-user', function () {
-    return view('page.user-management.data-user');
-});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/create-user', function () {
-    return view('page.user-management.create-user');
-});
+    Route::get('/management-user', function () {
+        return view('page.user-management.data-user');
+    });
 
-Route::get('/registered-partner', function () {
-    return view('page.registered-partner.data-partner');
-});
+    Route::get('/create-user', function () {
+        return view('page.user-management.create-user');
+    });
 
-Route::get('/create-partner', function () {
-    return view('page.registered-partner.create-partner');
-});
+    Route::get('/registered-partner', function () {
+        return view('page.registered-partner.data-partner');
+    });
 
-Route::get('/deleted-partner', function () {
-    return view('page.deleted-partner.data-deleted');
-});
+    Route::get('/create-partner', function () {
+        return view('page.registered-partner.create-partner');
+    });
 
+    Route::get('/deleted-partner', function () {
+        return view('page.deleted-partner.data-deleted');
+    });
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');
+});
