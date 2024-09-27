@@ -19,14 +19,15 @@ class UserFactory extends Factory
         return [
             'user_id' => fake()->randomNumber(8),
             'full_name' => fake()->name(),
-            'password' => bcrypt('11111111'),
+            'type' => 'Region Team',
             'region' => fake()->city(),
             'teritory' => fake()->state(),
-            'role' => fake()->randomElement(['admin', 'user', 'guest']),
             'status' => fake()->randomElement(['Active', 'Non Active']),
+            'password' => bcrypt('11111111'),
+            'roles' => fake()->randomElement(['Admin', 'User', 'CS', 'Manager', 'Supervisor', 'Developer', 'Support', 'Operator', 'Guest']),
             'level' => fake()->randomElement(['Admin', 'User']),
-            'remember_token' => fake()->sha256(),
             'img' => 'user.jpg',
+            'remember_token' => fake()->sha256(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

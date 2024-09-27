@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ManagementUserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +24,16 @@ Route::get('/', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::middleware(['auth'])->group(function () {
+    // todo: menu dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::get('/management-user', function () {
-        return view('page.user-management.data-user');
-    });
-
-    Route::get('/create-user', function () {
-        return view('page.user-management.create-user');
-    });
+    // todo: menu management user
+    Route::get('/management-user', [ManagementUserController::class, 'index'])->name('management-user.index');
+    Route::get('/create-user', [ManagementUserController::class, 'create'])->name('management-user.create');
+    Route::post('/management-user/create-user', [ManagementUserController::class, 'createPost'])->name('management-user.createPost');
+    Route::delete('/management-user/delete/{user_id}', [ManagementUserController::class, 'delete'])->name('management-user.delete');
+    Route::get('/management-user/edit/{user_id}', [ManagementUserController::class, 'edit'])->name('management-user.edit');
+    Route::put('/management-user/edit/{user_id}', [ManagementUserController::class, 'editPost'])->name('management-user.editPost');
 
     Route::get('/registered-partner', function () {
         return view('page.registered-partner.data-partner');
