@@ -28,19 +28,19 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::middleware(['auth'])->group(function () {
     // todo: menu dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // todo: menu management user
-    Route::get('/management-user', [ManagementUserController::class, 'index'])->name('management-user.index');
-    Route::get('/create-user', [ManagementUserController::class, 'create'])->name('management-user.create');
+    Route::get('/management-user', [ManagementUserController::class, 'index'])->name('management-user');
+    Route::get('/create-user', [ManagementUserController::class, 'create'])->name('create-user');
     Route::post('/management-user/create-user', [ManagementUserController::class, 'createPost'])->name('management-user.createPost');
     Route::delete('/management-user/delete/{user_id}', [ManagementUserController::class, 'delete'])->name('management-user.delete');
     Route::get('/management-user/edit/{user_id}', [ManagementUserController::class, 'edit'])->name('management-user.edit');
     Route::put('/management-user/edit/{user_id}', [ManagementUserController::class, 'editPost'])->name('management-user.editPost');
 
     // todo: menu registered partner
-    Route::get('/registered-partner', [RegisteredPartnerController::class, 'index'])->name('registered-partner.index');
-    Route::get('/create-partner', [RegisteredPartnerController::class, 'create'])->name('registered-partner.create');
+    Route::get('/registered-partner', [RegisteredPartnerController::class, 'index'])->name('registered-partner');
+    Route::get('/create-partner', [RegisteredPartnerController::class, 'create'])->name('create-partner');
     Route::post('/create-partner-post', [RegisteredPartnerController::class, 'createPost'])->name('registered-partner.createPost');
     Route::get('/edit-partner/{im3_outlet_id}', [RegisteredPartnerController::class, 'edit'])->name('registered-partner.edit');
     Route::post('/registered-partner/import-partner', [RegisteredPartnerController::class, 'import'])->name('registered-partner.import');
@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
             'title' => 'Data Deleted',
             'data' => $data
         ]);
-    })->name('deleted-partner.index');
+    })->name('deleted-partner');
     Route::post('/deleted-partner/restore/{id}', [DeletedPartnerController::class, 'restore'])->name('deleted-partner.restore');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');

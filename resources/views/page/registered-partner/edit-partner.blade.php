@@ -56,7 +56,7 @@
                                 <input value="{{ $partner->outlet_name }}" name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="#" class="btn btn-light">Cancel</a>
+                            <a href="{{ url('registered-partner') }}" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>

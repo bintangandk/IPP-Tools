@@ -48,7 +48,7 @@
                                 </button>
                             </form>
 
-                            <a type="button" class="btn btn-primary btn-spacing" href="#">
+                            <a type="button" class="btn btn-primary btn-spacing" href="{{ url('create-user') }}">
                                 <i class="bi bi-person"></i>
                                 <i class="bi bi-plus"></i>
                                 Create New User

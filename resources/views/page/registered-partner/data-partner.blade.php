@@ -111,7 +111,7 @@
                                     </button>
                                 </form>
                                 @if (Auth::user()->level == 'Admin')
-                                    <a type="button" class="btn btn-primary" href="#">
+                                    <a type="button" class="btn btn-primary" href="{{ url('create-partner') }}">
                                         <i class="bi bi-person"></i>
                                         <i class="bi bi-plus"></i>
                                         Create New Partner
