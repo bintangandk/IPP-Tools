@@ -76,7 +76,7 @@ class ManagementUserController extends Controller
             $user->save();
 
             Alert::toast('Data berhasil di simpan', 'success');
-            return back();
+            return redirect()->route('management-user');
         } catch (Exception $error) {
             Log::error($error->getMessage());
         }
@@ -128,7 +128,7 @@ class ManagementUserController extends Controller
             $user->save();
 
             Alert::toast('Data berhasil di update', 'success');
-            return redirect()->route('management-user.index');
+            return redirect()->route('management-user');
         } catch (Exception $error) {
             Log::error($error->getMessage());
         }

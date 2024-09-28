@@ -110,7 +110,7 @@ class RegisteredPartnerController extends Controller
             $registered_partner->outlet_name = $request->outlet_name;
             $registered_partner->save();
             Alert::success('Berhasil', 'Data Berhasil Di Simpan!');
-            return redirect()->route('registered-partner.index');
+            return redirect()->route('registered-partner');
         } catch(Exception $error) {
             Log::error($error->getMessage());
         }
