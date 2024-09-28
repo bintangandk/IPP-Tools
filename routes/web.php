@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeletedPartnerController;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\RegisteredPartnerController;
+use App\Models\DeletedPartner;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -45,9 +47,15 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/edit-partner-post/{im3_outlet_id}', [RegisteredPartnerController::class, 'editPost'])->name('registered-partner.editPost');
     Route::delete('/delete-partner/{im3_outlet_id}', [RegisteredPartnerController::class, 'delete'])->name('registered-partner.delete');
 
+    // todo: menu deleted partner
     Route::get('/deleted-partner', function () {
-        return view('page.deleted-partner.data-deleted');
-    });
+        $data = DeletedPartner::all();
+        return view('page.deleted-partner.data-deleted')->with([
+            'title' => 'Data Deleted',
+            'data' => $data
+        ]);
+    })->name('deleted-partner.index');
+    Route::post('/deleted-partner/restore/{id}', [DeletedPartnerController::class, 'restore'])->name('deleted-partner.restore');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');
 });

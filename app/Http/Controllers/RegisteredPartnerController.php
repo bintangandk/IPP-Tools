@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\RegisteredPartnerExport;
 use App\Imports\RegisteredPartnerImport;
+use App\Models\DeletedPartner;
 use App\Models\RegisteredPartner;
 use Exception;
 use Illuminate\Http\Request;
@@ -196,8 +197,34 @@ class RegisteredPartnerController extends Controller
 
     public function delete($im3_outlet_id) {
         $id_dec = Crypt::decrypt($im3_outlet_id);
-        $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->delete();
-        Alert::success('Berhasil', 'Data Berhasil Di Hapus!');
+        $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->first();
+
+        if ($registered_partner) {
+            DeletedPartner::create([
+                'partner_id' => $registered_partner->id,
+                'submission_date' => $registered_partner->submission_date,
+                'circle' => $registered_partner->circle,
+                'region' => $registered_partner->region,
+                'kecamatan' => $registered_partner->kecamatan,
+                'kabupaten' => $registered_partner->kabupaten,
+                'longitude' => $registered_partner->longitude,
+                'latitude' => $registered_partner->latitude,
+                'im3_outlet_id' => $registered_partner->im3_outlet_id,
+                'im3_outlet_name' => $registered_partner->im3_outlet_name,
+                'qr_code' => $registered_partner->qr_code,
+                'outlet_name' => $registered_partner->outlet_name,
+                'created_at' => $registered_partner->created_at,
+                'updated_at' => $registered_partner->updated_at
+            ]);
+
+            $registered_partner->delete();
+
+            Alert::success('Berhasil', 'Data Berhasil Di Hapus!');
+        } else {
+            Alert::error('Gagal', 'Data tidak ditemukan!');
+        }
+
         return back();
     }
+
 }
