@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                             <button type="submit" id="btn-submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="#" class="btn btn-light">Cancel</a>
+                            <a href="{{ url('management-user') }}" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>
