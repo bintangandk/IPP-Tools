@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagementUserController;
+use App\Http\Controllers\RegisteredPartnerController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -35,13 +36,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/management-user/edit/{user_id}', [ManagementUserController::class, 'edit'])->name('management-user.edit');
     Route::put('/management-user/edit/{user_id}', [ManagementUserController::class, 'editPost'])->name('management-user.editPost');
 
-    Route::get('/registered-partner', function () {
-        return view('page.registered-partner.data-partner');
-    });
-
-    Route::get('/create-partner', function () {
-        return view('page.registered-partner.create-partner');
-    });
+    // todo: menu registered partner
+    Route::get('/registered-partner', [RegisteredPartnerController::class, 'index'])->name('registered-partner.index');
+    Route::get('/create-partner', [RegisteredPartnerController::class, 'create'])->name('registered-partner.create');
+    Route::post('/create-partner-post', [RegisteredPartnerController::class, 'createPost'])->name('registered-partner.createPost');
+    Route::get('/edit-partner/{im3_outlet_id}', [RegisteredPartnerController::class, 'edit'])->name('registered-partner.edit');
+    Route::post('/registered-partner/import-partner', [RegisteredPartnerController::class, 'import'])->name('registered-partner.import');
+    Route::put('/edit-partner-post/{im3_outlet_id}', [RegisteredPartnerController::class, 'editPost'])->name('registered-partner.editPost');
+    Route::delete('/delete-partner/{im3_outlet_id}', [RegisteredPartnerController::class, 'delete'])->name('registered-partner.delete');
 
     Route::get('/deleted-partner', function () {
         return view('page.deleted-partner.data-deleted');
