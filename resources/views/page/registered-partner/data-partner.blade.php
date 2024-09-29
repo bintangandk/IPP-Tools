@@ -115,8 +115,9 @@
                                             <th class="text-center">Submition Date</th>
                                             <th class="text-center">Circle</th>
                                             <th class="text-center">Region</th>
-                                            <th class="text-center">Subdistrict</th>
-                                            <th class="text-center">Regency</th>
+                                            <th class="text-center">Kecamatan</th>
+                                            <th class="text-center">Kabupaten</th>
+                                            <th class="text-center">Kecamatan Unik</th>
                                             <th class="text-center">Latitude</th>
                                             <th class="text-center">Longitude</th>
                                             <th class="text-center">IM3 Outlet ID</th>
@@ -140,6 +141,7 @@
                                                 <td class="text-center">{{ $item->region }}</td>
                                                 <td class="text-center">{{ $item->kecamatan }}</td>
                                                 <td class="text-center">{{ $item->kabupaten }}</td>
+                                                <td class="text-center">Kabupaten | Kecamatan</td>
                                                 <td class="text-center">{{ $item->longitude }}</td>
                                                 <td class="text-center">{{ $item->latitude }}</td>
                                                 <td class="text-center">{{ $item->im3_outlet_id }}</td>
