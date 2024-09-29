@@ -15,35 +15,35 @@
                                 <input required name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
                             </div>
                             <div class="form-group">
-                                <label for="im3_outlet_name">Nama Outlet IM3</label>
+                                <label for="im3_outlet_name">Name Outlet IM3</label>
                                 <input required name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
                             </div>
                             <div class="form-group">
-                                <label for="submission_date">Tanggal Pengajuan</label>
+                                <label for="submission_date">Submition Date</label>
                                 <input required name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
                             <div class="form-group">
-                                <label for="circle">Lingkaran</label>
+                                <label for="circle">Circle</label>
                                 <input required name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
                             </div>
                             <div class="form-group">
-                                <label for="region">Wilayah</label>
+                                <label for="region">Region</label>
                                 <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }} >
                             </div>
                             <div class="form-group">
-                                <label for="kecamatan">Kecamatan</label>
+                                <label for="kecamatan">Subdistrict</label>
                                 <input required name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Kabupaten</label>
+                                <label for="kabupaten">Regency</label>
                                 <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
-                                <label for="longitude">Garis Lintang</label>
+                                <label for="longitude">Longitude</label>
                                 <input required name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
                             </div>
                             <div class="form-group">
-                                <label for="latitude">Garis Bujur</label>
+                                <label for="latitude">Latitude</label>
                                 <input required name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
@@ -51,7 +51,7 @@
                                 <input required name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">Nama Outlet</label>
+                                <label for="outlet_name">Name Outlet</label>
                                 <input required name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

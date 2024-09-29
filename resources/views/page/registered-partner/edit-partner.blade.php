@@ -16,35 +16,35 @@
                                 <input value="{{ $partner->im3_outlet_id }}" name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
                             </div>
                             <div class="form-group">
-                                <label for="im3_outlet_name">Nama Outlet IM3</label>
+                                <label for="im3_outlet_name">Name Outlet IM3</label>
                                 <input value="{{ $partner->im3_outlet_name }}" name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
                             </div>
                             <div class="form-group">
-                                <label for="submission_date">Tanggal Pengajuan</label>
+                                <label for="submission_date">Submition Date</label>
                                 <input value="{{ $partner->submission_date }}" name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
                             <div class="form-group">
-                                <label for="circle">Lingkaran</label>
+                                <label for="circle">Circle</label>
                                 <input value="{{ $partner->circle }}" name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
                             </div>
                             <div class="form-group">
-                                <label for="region">Wilayah</label>
+                                <label for="region">Region</label>
                                 <input value="{{ $partner->region }}" name="region" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah">
                             </div>
                             <div class="form-group">
-                                <label for="kecamatan">Kecamatan</label>
+                                <label for="kecamatan">Subdistrict</label>
                                 <input value="{{ $partner->kecamatan }}" name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Kabupaten</label>
+                                <label for="kabupaten">Regency</label>
                                 <input value="{{ $partner->kabupaten }}" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
-                                <label for="longitude">Garis Lintang</label>
+                                <label for="longitude">Longitude</label>
                                 <input value="{{ $partner->longitude }}" name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
                             </div>
                             <div class="form-group">
-                                <label for="latitude">Garis Bujur</label>
+                                <label for="latitude">Latitude</label>
                                 <input value="{{ $partner->latitude }}" name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
@@ -52,7 +52,7 @@
                                 <input value="{{ $partner->qr_code }}" name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">Nama Outlet</label>
+                                <label for="outlet_name">Name Outlet</label>
                                 <input value="{{ $partner->outlet_name }}" name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

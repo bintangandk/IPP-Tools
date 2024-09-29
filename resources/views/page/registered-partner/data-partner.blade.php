@@ -23,7 +23,7 @@
                                                 <label for="userIdInput2">Circle</label>
                                                 <select name="circle" class="form-control" id="circle">
                                                     <option value="semua"
-                                                        {{ request('circle') == 'semua' ? 'selected' : '' }}>Semua</option>
+                                                        {{ request('circle') == 'semua' ? 'selected' : '' }}>All</option>
                                                     @foreach ($circle as $item)
                                                         <option value="{{ $item }}"
                                                             {{ request('circle') == $item ? 'selected' : '' }}>
@@ -60,7 +60,7 @@
                                             <label for="userIdInput1">Sales Area</label>
                                             <select name="sales_area" class="form-control" id="sales_area">
                                                 <option value="semua"
-                                                    {{ request('sales_area') == 'semua' ? 'selected' : '' }}>Semua</option>
+                                                    {{ request('sales_area') == 'semua' ? 'selected' : '' }}>All</option>
                                                 @foreach ($sales_area as $item)
                                                     <option value="{{ $item }}"
                                                         {{ request('sales_area') == $item ? 'selected' : '' }}>
@@ -71,7 +71,7 @@
                                         <div class="col-md-2 d-flex flex-column">
                                             <label for="userIdInput1">Micro Cluster</label>
                                             <select name="micro_cluster" class="form-control" id="micro_cluster">
-                                                <option value="">Pilih Cluster</option>
+                                                <option value="">Select Cluster</option>
                                                 <option value=""></option>
                                             </select>
                                         </div>
@@ -122,15 +122,15 @@
                                             <th class="text-center">Submition Date</th>
                                             <th class="text-center">Circle</th>
                                             <th class="text-center">Region</th>
-                                            <th class="text-center">Kecamatan</th>
-                                            <th class="text-center">Kabupaten</th>
-                                            <th class="text-center">Longitude</th>
+                                            <th class="text-center">Subdistrict</th>
+                                            <th class="text-center">Regency</th>
                                             <th class="text-center">Latitude</th>
+                                            <th class="text-center">Longitude</th>
                                             <th class="text-center">IM3 Outlet ID</th>
                                             <th class="text-center">IM3 Outlet Name</th>
                                             <th class="text-center">3ID QR Code</th>
                                             <th class="text-center">3ID Outlet Name</th>
-                                            <th class="text-center">Aksi</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,7 +166,7 @@
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-danger delete-button">
                                                                 <i class="bi bi-trash"></i>
-                                                                Hapus
+                                                                Delete
                                                             </button>
                                                         </form>
                                                     </div>

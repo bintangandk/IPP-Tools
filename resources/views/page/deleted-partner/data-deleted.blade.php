@@ -20,12 +20,12 @@
                                         <tr>
                                             <th class="text-center">No</th>
                                             <th class="text-center">ID</th>
-                                            <th class="text-center">Alasan</th>
+                                            <th class="text-center">Reason</th>
                                             <th class="text-center">Submition Date</th>
                                             <th class="text-center">Circle</th>
                                             <th class="text-center">Region</th>
-                                            <th class="text-center">Kecamatan</th>
-                                            <th class="text-center">Kabupaten</th>
+                                            <th class="text-center">Subdistrict</th>
+                                            <th class="text-center">Regency</th>
                                             <th class="text-center">Longitude</th>
                                             <th class="text-center">Latitude</th>
                                             <th class="text-center">IM3 Outlet ID</th>

@@ -19,12 +19,12 @@
                                 <div class="py-3 d-flex align-items-end">
                                     <div class="col-md-4 d-flex flex-column">
                                         <label for="userIdInput1">User ID</label>
-                                            <input name="user_id" type="text" id="search" class="form-control" value="{{ request('user_id') }}" placeholder="Pencarian Berdasarkan User Id">
+                                            <input name="user_id" type="text" id="search" class="form-control" value="{{ request('user_id') }}" placeholder="Seach By User Id">
                                     </div>
                                     <div class="col-md-4 d-flex flex-column">
                                         <label for="userIdInput2">Role</label>
                                         <select name="role" class="form-control" id="role" required>
-                                            <option value="semua" {{ request('role') == 'semua' ? 'selected' : '' }}>Semua</option>
+                                            <option value="semua" {{ request('role') == 'semua' ? 'selected' : '' }}>All</option>
                                             @foreach ($users_roles as $item)
                                                 <option value="{{ $item }}" {{ request('role') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                             @endforeach
@@ -67,7 +67,7 @@
                                         <th class="text-center">Teritory</th>
                                         <th class="text-center">Roles</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center">Aksi</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,7 +94,7 @@
                                                     @method('DELETE')
                                                     <button class="btn btn-danger delete-button">
                                                         <i class="bi bi-trash"></i>
-                                                        Hapus
+                                                        Delete
                                                     </button>
                                                 </form>
                                             </div>
