@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('deleted_partners', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('partner_id');
+            $table->string('alasan');
             $table->date('submission_date');
             $table->string('circle');
             $table->string('region');

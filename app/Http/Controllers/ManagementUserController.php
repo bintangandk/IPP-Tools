@@ -21,7 +21,7 @@ class ManagementUserController extends Controller
             $query->where('user_id', 'like', '%' . $request->user_id . '%');
         }
 
-        if ($request->filled('role')) {
+        if ($request->filled('role') && $request->role != 'semua') {
             $query->where('roles', 'like', '%' . $request->role . '%');
         }
 

@@ -24,6 +24,7 @@
                                     <div class="col-md-4 d-flex flex-column">
                                         <label for="userIdInput2">Role</label>
                                         <select name="role" class="form-control" id="role" required>
+                                            <option value="semua" {{ request('role') == 'semua' ? 'selected' : '' }}>Semua</option>
                                             @foreach ($users_roles as $item)
                                                 <option value="{{ $item }}" {{ request('role') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                             @endforeach

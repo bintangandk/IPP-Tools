@@ -202,6 +202,7 @@ class RegisteredPartnerController extends Controller
         if ($registered_partner) {
             DeletedPartner::create([
                 'partner_id' => $registered_partner->id,
+                'alasan' => request()->input('reason'),
                 'submission_date' => $registered_partner->submission_date,
                 'circle' => $registered_partner->circle,
                 'region' => $registered_partner->region,

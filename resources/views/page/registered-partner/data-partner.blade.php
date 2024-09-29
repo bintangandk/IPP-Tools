@@ -188,28 +188,41 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        // Menggunakan event delegation untuk menangani tombol hapus
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('delete-button')) {
-                e.preventDefault();
-                const form = e.target.closest('form'); // Menemukan form terdekat
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
+<script>
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete-button')) {
+            e.preventDefault();
+            const form = e.target.closest('form');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                input: 'textarea',
+                inputPlaceholder: 'Please provide a reason for deletion...',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                preConfirm: (reason) => {
+                    if (!reason) {
+                        Swal.showValidationMessage('Reason is required');
+                    } else {
+                        const reasonInput = document.createElement('input');
+                        reasonInput.type = 'hidden';
+                        reasonInput.name = 'reason';
+                        reasonInput.value = reason;
+                        form.appendChild(reasonInput);
                     }
-                });
-            }
-        });
-    </script>
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    });
+</script>
 
     @include('sweetalert::alert')
 @endsection

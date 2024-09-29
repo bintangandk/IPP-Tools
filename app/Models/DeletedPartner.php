@@ -11,6 +11,7 @@ class DeletedPartner extends Model
 
     protected $fillable = [
         'partner_id',
+        'alasan',
         'submission_date',
         'circle',
         'region',

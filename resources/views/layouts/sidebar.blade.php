@@ -21,13 +21,11 @@
                  <span class="menu-title">Register Partner</span>
              </a>
          </li>
-         @if (Auth::user()->level == 'Admin')
          <li class="nav-item">
             <a class="nav-link" href="{{ url('deleted-partner') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Deleted Partner</span>
             </a>
         </li>
-         @endif
      </ul>
  </nav>
