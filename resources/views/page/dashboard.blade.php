@@ -55,7 +55,7 @@
                         <div class="card card-light-blue" style="margin-bottom: 20px;">
                             <div class="card-body">
                                 <p class="mb-4">PKS</p>
-                                <p class="fs-30 mb-2">34040</p>
+                                <p class="fs-30 mb-2">{{ $count_pks }}</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="card card-light-danger" style="margin-bottom: 20px;">
                             <div class="card-body">
                                 <p class="mb-4">Branding</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{ $count_branding }}</p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <div class="card card-dark-green" style="margin-bottom: 20px;">
                             <div class="card-body">
                                 <p class="mb-4">Service</p>
-                                <p class="fs-30 mb-2">34040</p>
+                                <p class="fs-30 mb-2">{{ $count_service }}</p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <div class="card card-dark-red" style="margin-bottom: 20px;">
                             <div class="card-body">
                                 <p class="mb-4">Terminated</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{ $count_terminated }}</p>
                             </div>
                         </div>
                     </div>
