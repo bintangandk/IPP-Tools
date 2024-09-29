@@ -11,14 +11,6 @@
                         <form class="forms-sample" method="POST" action="{{ route('registered-partner.createPost') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="im3_outlet_id">Outlet ID IM3</label>
-                                <input required name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
-                            </div>
-                            <div class="form-group">
-                                <label for="im3_outlet_name">Name Outlet IM3</label>
-                                <input required name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
-                            </div>
-                            <div class="form-group">
                                 <label for="submission_date">Submition Date</label>
                                 <input required name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
@@ -31,11 +23,15 @@
                                 <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }}>
                             </div>
                             <div class="form-group">
-                                <label for="kecamatan">Subdistrict</label>
+                                <label for="kecamatan">Kecamatan</label>
                                 <input required name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Regency</label>
+                                <label for="kabupaten">Kabupaten</label>
+                                <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                            </div>
+                            <div class="form-group">
+                                <label for="kabupaten">Kecamatan Unik</label>
                                 <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
@@ -47,15 +43,23 @@
                                 <input required name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
+                                <label for="im3_outlet_id">IM3 Outlet ID</label>
+                                <input required name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
+                            </div>
+                            <div class="form-group">
+                                <label for="im3_outlet_name">IM3 Outlet Name</label>
+                                <input required name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
+                            </div>
+                            <div class="form-group">
                                 <label for="qr_code">3ID QR Code</label>
                                 <input required name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">Name Outlet 3ID</label>
+                                <label for="outlet_name">3ID Outlet Name</label>
                                 <input required name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Status Service</label>
+                                <label for="exampleSelectGender">Service</label>
                                 <select name="service" class="form-control" id="service">
                                     <option>Select</option>
                                     <option value="1">Done</option>
@@ -63,7 +67,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Status Branding</label>
+                                <label for="exampleSelectGender">Branding</label>
                                 <select name="status_branding" class="form-control" id="status_branding">
                                     <option>Select</option>
                                     <option value="1">Done</option>
@@ -71,7 +75,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Post Paid</label>
+                                <label for="exampleSelectGender">PostPaid</label>
                                 <select name="postpaid" class="form-control" id="postpaid">
                                     <option>Select</option>
                                     <option value="1">Done</option>
