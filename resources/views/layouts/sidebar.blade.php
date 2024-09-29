@@ -24,7 +24,7 @@
          <li class="nav-item">
             <a class="nav-link" href="{{ url('deleted-partner') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Deleted Partner</span>
+                <span class="menu-title">Terminated Partner</span>
             </a>
         </li>
      </ul>
