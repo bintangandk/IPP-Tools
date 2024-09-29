@@ -29,7 +29,7 @@ class ManagementUserController extends Controller
             return Excel::download(new UsersExport($request->user_id, $request->role), 'users.xlsx');
         }
 
-        $users = $query->get();
+        $users = $query->paginate(20);
         $users_roles = User::distinct()->pluck('roles');
 
         return view('page.user-management.data-user')->with([

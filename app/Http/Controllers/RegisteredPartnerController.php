@@ -62,7 +62,7 @@ class RegisteredPartnerController extends Controller
                 return Excel::download(new RegisteredPartnerExport(request('circle'), request('region'), request('area'), request('sales_area'), $user->level), 'registered_partner.xlsx');
             }
         }
-        $registered_partner = $registered_partner->get();
+        $registered_partner = $registered_partner->paginate(20);
         return view('page.registered-partner.data-partner')->with([
             'title' => 'Data Partner',
             'registered_partner' => $registered_partner,

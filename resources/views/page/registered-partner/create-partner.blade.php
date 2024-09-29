@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="region">Wilayah</label>
-                                <input name="region" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah">
+                                <input name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'disabled' : '' }} >
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Kecamatan</label>

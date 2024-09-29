@@ -84,7 +84,6 @@
                                 </form>
                             </div>
                             <div class="py-3 d-flex justify-content-end">
-                                @if (Auth::user()->level == 'Admin')
                                     <form id="importForm" action="{{ route('registered-partner.import') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
@@ -96,7 +95,6 @@
                                             Import Partner
                                         </label>
                                     </form>
-                                @endif
                                 <form method="GET">
                                     @csrf
                                     <input type="hidden" name="export" value="true">
@@ -110,13 +108,11 @@
                                         Export Partner
                                     </button>
                                 </form>
-                                @if (Auth::user()->level == 'Admin')
                                     <a type="button" class="btn btn-primary" href="{{ url('create-partner') }}">
                                         <i class="bi bi-person"></i>
                                         <i class="bi bi-plus"></i>
                                         Create New Partner
                                     </a>
-                                @endif
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
@@ -179,6 +175,13 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <!-- Bootstrap Pagination -->
+                                <div>
+                                    {{ $registered_partner->links('pagination::bootstrap-5') }} <!-- Use Bootstrap 5 pagination style -->
+                                </div>
                             </div>
                         </div>
                     </div>

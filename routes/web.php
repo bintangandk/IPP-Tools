@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     // todo: menu deleted partner
     Route::get('/deleted-partner', function () {
-        $data = DeletedPartner::all();
+        $data = DeletedPartner::orderBy('created_at', 'desc')->paginate(20);
         return view('page.deleted-partner.data-deleted')->with([
             'title' => 'Data Deleted',
             'data' => $data
