@@ -19,7 +19,7 @@
                                     @csrf
                                     <div class="py-3 d-flex align-items-end">
                                         @if (auth()->user()->level == 'Admin')
-                                            <div class="col-md-2 d-flex flex-column">
+                                            <div class="col-md-4 d-flex flex-column">
                                                 <label for="userIdInput2">Circle</label>
                                                 <select name="circle" class="form-control" id="circle">
                                                     <option value="semua"
@@ -32,7 +32,7 @@
                                                 </select>
                                             </div>
                                         @endif
-                                        <div class="col-md-2 d-flex flex-column">
+                                        <div class="col-md-4 d-flex flex-column">
                                             <label for="userIdInput1">Region</label>
                                             <select name="region" class="form-control" id="region">
                                                 <option value="semua" {{ request('region') == 'semua' ? 'selected' : '' }}>
@@ -44,7 +44,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-2 d-flex flex-column">
+                                        <div class="col-md-4 d-flex flex-column">
                                             <label for="userIdInput1">Area</label>
                                             <select name="area" class="form-control" id="area">
                                                 <option value="semua" {{ request('area') == 'semua' ? 'selected' : '' }}>
@@ -56,7 +56,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-2 d-flex flex-column">
+                                        <!-- <div class="col-md-2 d-flex flex-column">
                                             <label for="userIdInput1">Sales Area</label>
                                             <select name="sales_area" class="form-control" id="sales_area">
                                                 <option value="semua"
@@ -67,14 +67,7 @@
                                                         {{ $item }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="col-md-2 d-flex flex-column">
-                                            <label for="userIdInput1">Micro Cluster</label>
-                                            <select name="micro_cluster" class="form-control" id="micro_cluster">
-                                                <option value="">Select Cluster</option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-2 d-flex">
                                             <button type="submit" class="btn btn-primary">
                                                 Filter
@@ -130,6 +123,9 @@
                                             <th class="text-center">IM3 Outlet Name</th>
                                             <th class="text-center">3ID QR Code</th>
                                             <th class="text-center">3ID Outlet Name</th>
+                                            <th class="text-center">Status Service</th>
+                                            <th class="text-center">Status Branding</th>
+                                            <th class="text-center">Post Paid</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -150,6 +146,9 @@
                                                 <td class="text-center">{{ $item->im3_outlet_name }}</td>
                                                 <td class="text-center">{{ $item->qr_code }}</td>
                                                 <td class="text-center">{{ $item->outlet_name }}</td>
+                                                <td class="text-center"><label class="badge badge-success">Done</td>
+                                                <td class="text-center"><label class="badge badge-success">Done</td>
+                                                <td class="text-center"><label class="badge badge-success">Done</td>
                                                 <td class="text-center">
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <a

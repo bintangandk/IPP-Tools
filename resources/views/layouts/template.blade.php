@@ -32,6 +32,35 @@
       max-width: 300px;
       max-height: 300px;
     }
+
+    .card-light-green {
+      background-color: #90ee90;
+      /* Light green color */
+      color: #fff;
+      /* Text color */
+    }
+
+    .card-dark-green {
+      background-color: #006400;
+      /* Dark green color */
+      color: #fff;
+      /* Text color */
+    }
+
+
+    .card-dark-red {
+      background-color: #8b0000;
+      /* Dark red color */
+      color: #fff;
+      /* Text color */
+    }
+
+    .card-light-yellow {
+      background-color: #fffacd;
+      /* Light yellow color */
+      color: #000;
+      /* Dark text color for better contrast */
+    }
   </style>
 </head>
 
