@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('full_name');
-            $table->string('type');
-            $table->string('region');
-            $table->string('teritory');
+            $table->string('type')->nullable();
+            $table->string('region')->nullable();
+            $table->string('teritory')->nullable();
             $table->enum('status', ['Active', 'Non Active'])->default('Active');
-            $table->string('password');
-            $table->string('roles');
+            $table->string('password')->nullable();
+            $table->string('roles')->nullable();
             $table->enum('level', ['Admin', 'User'])->default('User');
             $table->string('img')->nullable();
             $table->rememberToken();
