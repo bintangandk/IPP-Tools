@@ -12,14 +12,6 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="im3_outlet_id">Outlet ID IM3</label>
-                                <input value="{{ $partner->im3_outlet_id }}" name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
-                            </div>
-                            <div class="form-group">
-                                <label for="im3_outlet_name">Name Outlet IM3</label>
-                                <input value="{{ $partner->im3_outlet_name }}" name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
-                            </div>
-                            <div class="form-group">
                                 <label for="submission_date">Submition Date</label>
                                 <input value="{{ $partner->submission_date }}" name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
@@ -32,12 +24,16 @@
                                 <input value="{{ $partner->region }}" name="region" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah">
                             </div>
                             <div class="form-group">
-                                <label for="kecamatan">Subdistrict</label>
+                                <label for="kecamatan">Kecamatan</label>
                                 <input value="{{ $partner->kecamatan }}" name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Regency</label>
+                                <label for="kabupaten">Kabupaten</label>
                                 <input value="{{ $partner->kabupaten }}" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                            </div>
+                            <div class="form-group">
+                                <label for="kabupaten">Kecamatan Unik</label>
+                                <input value="#" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
                                 <label for="longitude">Longitude</label>
@@ -48,15 +44,23 @@
                                 <input value="{{ $partner->latitude }}" name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
-                                <label for="qr_code">QR Code 3ID</label>
+                                <label for="im3_outlet_id">IM3 Outlet ID</label>
+                                <input value="{{ $partner->im3_outlet_id }}" name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
+                            </div>
+                            <div class="form-group">
+                                <label for="im3_outlet_name">IM3 Outlte Name</label>
+                                <input value="{{ $partner->im3_outlet_name }}" name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
+                            </div>
+                            <div class="form-group">
+                                <label for="qr_code">3ID QR Code</label>
                                 <input value="{{ $partner->qr_code }}" name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">Name Outlet 3ID</label>
+                                <label for="outlet_name">3ID Outlet Name</label>
                                 <input value="{{ $partner->outlet_name }}" name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Status Service</label>
+                                <label for="exampleSelectGender">Service</label>
                                 <select name="service" class="form-control" id="service">
                                     <option>Select</option>
                                     <option value="1">Done</option>
@@ -64,7 +68,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Status Branding</label>
+                                <label for="exampleSelectGender">Branding</label>
                                 <select name="status_branding" class="form-control" id="status_branding">
                                     <option>Select</option>
                                     <option value="1">Done</option>
