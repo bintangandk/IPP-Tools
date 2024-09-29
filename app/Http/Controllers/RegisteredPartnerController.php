@@ -98,6 +98,9 @@ class RegisteredPartnerController extends Controller
             'im3_outlet_name' => 'required',
             '3id_qr_code' => 'nullable|string',
             '3id_outlet_name' => 'required',
+            'service' => 'required',
+            'branding' => 'required',
+            'post_paid' => 'required',
             'name_owner' => 'required',
             'nik_owner' => 'required',
             'npwp_owner' => 'required',
@@ -119,7 +122,7 @@ class RegisteredPartnerController extends Controller
         $registered_partner->{"3id_qr_code"} = $validatedData['3id_qr_code'] ?? null;
 
         // Set value for im3_3id_users based on conditions
-        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? 1 : 0;
+        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? '1' : '0';
 
         // Handle PKS file upload
         $pksPath = public_path('pks');
@@ -212,9 +215,9 @@ class RegisteredPartnerController extends Controller
             'im3_outlet_name' => 'required',
             '3id_qr_code' => 'nullable|string',
             '3id_outlet_name' => 'required',
-            'service' => 'required|in:Done,Not',
-            'branding' => 'required|in:Done,Not',
-            'post_paid' => 'required|in:Done,Not',
+            'service' => 'required',
+            'branding' => 'required',
+            'post_paid' => 'required',
             'name_owner' => 'required',
             'nik_owner' => 'required',
             'npwp_owner' => 'required',
@@ -249,7 +252,7 @@ class RegisteredPartnerController extends Controller
         }
 
         // Set value for im3_3id_users based on conditions
-        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? 1 : 0;
+        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? '1' : '0';
 
         // Save data
         $registered_partner->save();

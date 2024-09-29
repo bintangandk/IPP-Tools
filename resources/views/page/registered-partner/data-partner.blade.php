@@ -148,9 +148,9 @@
                                                 <td class="text-center">{{ $item->im3_outlet_name }}</td>
                                                 <td class="text-center">{{ $item->{'3id_qr_code'} }}</td>
                                                 <td class="text-center">{{ $item->{'3id_outlet_name'} }}</td>
-                                                <td class="text-center"><label class="badge {{ $item->service === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->service }}</td>
-                                                <td class="text-center"><label class="badge {{ $item->branding === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->branding }}</td>
-                                                <td class="text-center"><label class="badge {{ $item->post_paid === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->post_paid }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->service === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->service == '1' ? 'Done' : 'Not' }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->branding === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->branding == '1' ? 'Done' : 'Not' }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->post_paid === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->post_paid == '1' ? 'Done' : 'Not' }}</td>
                                                 <td class="text-center">
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <a

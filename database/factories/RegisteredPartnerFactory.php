@@ -69,7 +69,7 @@ class RegisteredPartnerFactory extends Factory
             'nik_owner' => fake()->numerify('################'),
             'npwp_owner' => fake()->numerify('##.###.###.#-###.###'),
             'email_owner' => fake()->safeEmail(),
-            'im3_3id_users' => fake()->randomElement([1, 0]),
+            'im3_3id_users' => fake()->randomElement(['1', '0']),
         ];
     }
 }

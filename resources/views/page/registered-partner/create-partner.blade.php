@@ -62,24 +62,24 @@
                                 <label for="service">Service</label>
                                 <select required name="service" class="form-control" id="service">
                                     <option value="" disabled selected>Pilih Status</option>
-                                    <option value="Done">Done</option>
-                                    <option value="Not">Not</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="branding">Branding</label>
                                 <select required name="branding" class="form-control" id="branding">
                                     <option value="" disabled selected>Pilih Status</option>
-                                    <option value="Done">Done</option>
-                                    <option value="Not">Not</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="post_paid">PostPaid</label>
                                 <select required name="post_paid" class="form-control" id="post_paid">
                                     <option value="" disabled selected>Pilih Status</option>
-                                    <option value="Done">Done</option>
-                                    <option value="Not">Not</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">

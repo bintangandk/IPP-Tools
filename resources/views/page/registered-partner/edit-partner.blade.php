@@ -62,22 +62,22 @@
                             <div class="form-group">
                                 <label for="service">Service</label>
                                 <select name="service" class="form-control" id="service">
-                                    <option value="Done" {{ $partner->service === 'Done' ? 'selected' : '' }}>Done</option>
-                                    <option value="Not" {{ $partner->service !== 'Done' ? 'selected' : '' }}>Not</option>
+                                    <option value="1" {{ $partner->service === '1' ? 'selected' : '' }}>Done</option>
+                                    <option value="0" {{ $partner->service !== '1' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="branding">Branding</label>
                                 <select name="branding" class="form-control" id="branding">
-                                    <option value="Done" {{ $partner->branding === 'Done' ? 'selected' : '' }}>Done</option>
-                                    <option value="Not" {{ $partner->branding !== 'Done' ? 'selected' : '' }}>Not</option>
+                                    <option value="1" {{ $partner->branding === '1' ? 'selected' : '' }}>Done</option>
+                                    <option value="0" {{ $partner->branding !== '1' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="post_paid">Post Paid</label>
                                 <select name="post_paid" class="form-control" id="post_paid">
-                                    <option value="Done" {{ $partner->post_paid === 'Done' ? 'selected' : '' }}>Done</option>
-                                    <option value="Not" {{ $partner->post_paid !== 'Done' ? 'selected' : '' }}>Not</option>
+                                    <option value="1" {{ $partner->post_paid === '1' ? 'selected' : '' }}>Done</option>
+                                    <option value="0" {{ $partner->post_paid !== '1' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
