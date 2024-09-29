@@ -4,9 +4,9 @@ namespace App\Exports;
 
 use App\Models\RegisteredPartner;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings; // Tambahkan ini
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class RegisteredPartnerExport implements FromCollection, WithHeadings // Implementasikan WithHeadings
+class RegisteredPartnerExport implements FromCollection, WithHeadings
 {
     protected $circle, $region, $area, $sales_area, $userLevel;
 
@@ -48,21 +48,41 @@ class RegisteredPartnerExport implements FromCollection, WithHeadings // Impleme
             }
         }
 
-        // Kembalikan data yang sesuai dengan heading
         return $query->select([
-            'submission_date','circle', 'region', 'kecamatan', 'kabupaten',
-            'longitude', 'latitude', 'im3_outlet_id', 'im3_outlet_name',
-            'qr_code', 'outlet_name', 'created_at', 'updated_at',
+            'submission_date', 'circle', 'region', 'kecamatan', 'kabupaten',
+            'kecamatan_unik', 'longitude', 'latitude', 'im3_outlet_id',
+            'im3_outlet_name', '3id_qr_code', '3id_outlet_name',
+            'service', 'branding', 'post_paid', 'pks',
+            'upload_branding', 'name_owner', 'nik_owner',
+            'npwp_owner', 'email_owner', 'im3_3id_users',
         ])->get();
     }
 
-    // Implementasi heading untuk Excel
     public function headings(): array
     {
         return [
-            'submission_date','circle', 'region', 'kecamatan', 'kabupaten',
-            'longitude', 'latitude', 'im3_outlet_id', 'im3_outlet_name',
-            'qr_code', 'outlet_name', 'created_at', 'updated_at',
+            'SUBMISSION_DATE',
+            'CIRCLE',
+            'REGION',
+            'KECAMATAN',
+            'KABUPATEN',
+            'KECAMATAN_UNIK',
+            'LONGITUDE',
+            'LATITUDE',
+            'IM3_OUTLET_ID',
+            'IM3_OUTLET_NAME',
+            '3ID_QR_CODE',
+            '3ID_OUTLET_NAME',
+            'Service',
+            'Branding',
+            'Post_Paid',
+            'Upload_PKS',
+            'Upload_Branding',
+            'Nama_Owner',
+            'NIK_Owner',
+            'NPWP_Owner',
+            'Email_Owner',
+            'IM3_3ID_Users',
         ];
     }
 }

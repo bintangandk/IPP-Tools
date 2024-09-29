@@ -20,12 +20,23 @@ return new class extends Migration
             $table->string('region');
             $table->string('kecamatan');
             $table->string('kabupaten');
+            $table->string('kecamatan_unik');
             $table->decimal('longitude', 9, 6);
             $table->decimal('latitude', 9, 6);
             $table->string('im3_outlet_id');
             $table->string('im3_outlet_name');
-            $table->string('qr_code');
-            $table->string('outlet_name');
+            $table->string('3id_qr_code');
+            $table->string('3id_outlet_name');
+            $table->enum('service', ['Done', 'Not']);
+            $table->enum('branding', ['Done', 'Not']);
+            $table->enum('post_paid', ['Done', 'Not']);
+            $table->string('pks');
+            $table->string('upload_branding');
+            $table->string('name_owner');
+            $table->string('nik_owner');
+            $table->string('npwp_owner');
+            $table->string('email_owner');
+            $table->integer('im3_3id_users');
             $table->timestamps();
         });
     }

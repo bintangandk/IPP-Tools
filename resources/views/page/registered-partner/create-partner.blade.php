@@ -8,10 +8,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Create New Partner</h4>
-                        <form class="forms-sample" method="POST" action="{{ route('registered-partner.createPost') }}">
+                        <form class="forms-sample" method="POST" action="{{ route('registered-partner.createPost') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="submission_date">Submition Date</label>
+                                <label for="submission_date">Submission Date</label>
                                 <input required name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
                             <div class="form-group">
@@ -31,8 +31,8 @@
                                 <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Kecamatan Unik</label>
-                                <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                                <label for="kecamatan_unik">Kecamatan Unik</label>
+                                <input required name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Masukkan Kecamatan Unik">
                             </div>
                             <div class="form-group">
                                 <label for="longitude">Longitude</label>
@@ -44,73 +44,73 @@
                             </div>
                             <div class="form-group">
                                 <label for="im3_outlet_id">IM3 Outlet ID</label>
-                                <input required name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
+                                <input name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
                             </div>
                             <div class="form-group">
                                 <label for="im3_outlet_name">IM3 Outlet Name</label>
                                 <input required name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
                             </div>
                             <div class="form-group">
-                                <label for="qr_code">3ID QR Code</label>
-                                <input required name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
+                                <label for="3id_qr_code">3ID QR Code</label>
+                                <input name="3id_qr_code" type="text" class="form-control" id="3id_qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">3ID Outlet Name</label>
-                                <input required name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
+                                <label for="3id_outlet_name">3ID Outlet Name</label>
+                                <input name="3id_outlet_name" type="text" class="form-control" id="3id_outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Service</label>
-                                <select name="service" class="form-control" id="service">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                <label for="service">Service</label>
+                                <select required name="service" class="form-control" id="service">
+                                    <option value="" disabled selected>Pilih Status</option>
+                                    <option value="Done">Done</option>
+                                    <option value="Not">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Branding</label>
-                                <select name="status_branding" class="form-control" id="status_branding">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                <label for="branding">Branding</label>
+                                <select required name="branding" class="form-control" id="branding">
+                                    <option value="" disabled selected>Pilih Status</option>
+                                    <option value="Done">Done</option>
+                                    <option value="Not">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">PostPaid</label>
-                                <select name="postpaid" class="form-control" id="postpaid">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                <label for="post_paid">PostPaid</label>
+                                <select required name="post_paid" class="form-control" id="post_paid">
+                                    <option value="" disabled selected>Pilih Status</option>
+                                    <option value="Done">Done</option>
+                                    <option value="Not">Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="upload_pks">Upload PKS</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="upload_pks">
+                                    <input type="file" name="pks" class="custom-file-input" id="upload_pks" required>
                                     <label class="custom-file-label" for="upload_pks">Pilih File</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="upload_branding">Upload Branding</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="upload_branding">
+                                    <input type="file" name="upload_branding" class="custom-file-input" id="upload_branding" required>
                                     <label class="custom-file-label" for="upload_branding">Pilih File</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name_owner">Name Owner</label>
-                                <input required name="name_owner" type="text" class="form-control" id="#" placeholder="Masukkan Nama Owner">
+                                <input required name="name_owner" type="text" class="form-control" id="name_owner" placeholder="Masukkan Nama Owner">
                             </div>
                             <div class="form-group">
-                                <label for="nik">NIK Owner</label>
-                                <input required name="nik" type="text" class="form-control" id="#" placeholder="Masukkan NIK Owner">
+                                <label for="nik_owner">NIK Owner</label>
+                                <input required name="nik_owner" type="text" class="form-control" id="nik_owner" placeholder="Masukkan NIK Owner">
                             </div>
                             <div class="form-group">
-                                <label for="npwp">NPWP Owner</label>
-                                <input required name="npwp" type="text" class="form-control" id="#" placeholder="Masukkan NPWP">
+                                <label for="npwp_owner">NPWP Owner</label>
+                                <input required name="npwp_owner" type="text" class="form-control" id="npwp_owner" placeholder="Masukkan NPWP">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Owner</label>
-                                <input required name="email" type="text" class="form-control" id="#" placeholder="Masukkan Email">
+                                <label for="email_owner">Email Owner</label>
+                                <input required name="email_owner" type="email" class="form-control" id="email_owner" placeholder="Masukkan Email">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ url('registered-partner') }}" class="btn btn-light">Cancel</a>

@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -80,41 +81,75 @@ class RegisteredPartnerController extends Controller
         ]);
     }
 
-    public function createPost(Request $request){
-        try {
-            request()->validate([
-                'submission_date' => 'required|date',
-                'circle' => 'required',
-                'region' => 'required',
-                'kecamatan' => 'required',
-                'kabupaten' => 'required',
-                'longitude' => 'required',
-                'latitude' => 'required',
-                'im3_outlet_id' => 'required',
-                'im3_outlet_name' => 'required',
-                'qr_code' => 'required',
-                'outlet_name' => 'required',
-            ]);
+    public function createPost(Request $request)
+{
+    try {
+        // Validate input from form
+        $validatedData = $request->validate([
+            'submission_date' => 'required|date',
+            'circle' => 'required',
+            'region' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan_unik' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
+            'im3_outlet_id' => 'nullable|string',
+            'im3_outlet_name' => 'required',
+            '3id_qr_code' => 'nullable|string',
+            '3id_outlet_name' => 'required',
+            'name_owner' => 'required',
+            'nik_owner' => 'required',
+            'npwp_owner' => 'required',
+            'email_owner' => 'required|email',
+            'pks' => 'required|file|mimes:pdf,jpeg,jpg,png',
+            'upload_branding' => 'required|file|mimes:pdf,jpeg,jpg,png',
+        ]);
 
-            $registered_partner = new RegisteredPartner();
-            $registered_partner->submission_date = $request->submission_date;
-            $registered_partner->circle = $request->circle;
-            $registered_partner->region = $request->region;
-            $registered_partner->kecamatan = $request->kecamatan;
-            $registered_partner->kabupaten = $request->kabupaten;
-            $registered_partner->longitude = $request->longitude;
-            $registered_partner->latitude = $request->latitude;
-            $registered_partner->im3_outlet_id = $request->im3_outlet_id;
-            $registered_partner->im3_outlet_name = $request->im3_outlet_name;
-            $registered_partner->qr_code = $request->qr_code;
-            $registered_partner->outlet_name = $request->outlet_name;
-            $registered_partner->save();
-            Alert::success('Berhasil', 'Data Berhasil Di Simpan!');
-            return redirect()->route('registered-partner');
-        } catch(Exception $error) {
-            Log::error($error->getMessage());
+        // Create instance of RegisteredPartner model
+        $registered_partner = new RegisteredPartner();
+
+        // Fill all columns with validated data, except for nullable fields
+        $registered_partner->fill(array_filter($validatedData, function($value) {
+            return $value !== null;
+        }));
+
+        // Handle specific cases
+        $registered_partner->im3_outlet_id = $validatedData['im3_outlet_id'] ?? null;
+        $registered_partner->{"3id_qr_code"} = $validatedData['3id_qr_code'] ?? null;
+
+        // Set value for im3_3id_users based on conditions
+        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? 1 : 0;
+
+        // Handle PKS file upload
+        $pksPath = public_path('pks');
+        if (!File::exists($pksPath)) {
+            File::makeDirectory($pksPath, 0755, true);
         }
+        $pksFileName = ($validatedData['im3_outlet_id'] ?? 'default') . '_pks.' . $request->file('pks')->getClientOriginalExtension();
+        $registered_partner->pks = $request->file('pks')->storeAs('pks', $pksFileName, 'public');
+
+        // Handle Branding file upload
+        $brandingPath = public_path('branding');
+        if (!File::exists($brandingPath)) {
+            File::makeDirectory($brandingPath, 0755, true);
+        }
+        $brandingFileName = ($validatedData['im3_outlet_id'] ?? 'default') . '_branding.' . $request->file('upload_branding')->getClientOriginalExtension();
+        $registered_partner->upload_branding = $request->file('upload_branding')->storeAs('branding', $brandingFileName, 'public');
+
+        // Save data
+        $registered_partner->save();
+
+        Alert::success('Success', 'Data successfully saved!');
+        return redirect()->route('registered-partner');
+    } catch (Exception $error) {
+        Log::error($error->getMessage());
+        Alert::error('Failed', 'An error occurred, please try again!');
+        return back()->withInput();
     }
+}
+
+
 
     public function import(Request $request)
     {
@@ -160,72 +195,144 @@ class RegisteredPartnerController extends Controller
         ]);
     }
 
-    public function editPost(Request $request, $im3_outlet_id) {
-        try {
-            request()->validate([
-                'submission_date' => 'required|date',
-                'circle' => 'required',
-                'region' => 'required',
-                'kecamatan' => 'required',
-                'kabupaten' => 'required',
-                'longitude' => 'required',
-                'latitude' => 'required',
-                'im3_outlet_id' => 'required',
-                'im3_outlet_name' => 'required',
-                'qr_code' => 'required',
-                'outlet_name' => 'required',
-            ]);
-            $registered_partner = RegisteredPartner::where('im3_outlet_id', $im3_outlet_id)->first();
-            $registered_partner->submission_date = $request->submission_date;
-            $registered_partner->circle = $request->circle;
-            $registered_partner->region = $request->region;
-            $registered_partner->kecamatan = $request->kecamatan;
-            $registered_partner->kabupaten = $request->kabupaten;
-            $registered_partner->longitude = $request->longitude;
-            $registered_partner->latitude = $request->latitude;
-            $registered_partner->im3_outlet_id = $request->im3_outlet_id;
-            $registered_partner->im3_outlet_name = $request->im3_outlet_name;
-            $registered_partner->qr_code = $request->qr_code;
-            $registered_partner->outlet_name = $request->outlet_name;
-            $registered_partner->save();
-            Alert::success('Berhasil', 'Data Berhasil Di Update!');
-            return redirect()->route('registered-partner');
-        } catch(Exception $error) {
-            Log::error($error->getMessage());
-        }
-    }
+    public function editPost(Request $request, $im3_outlet_id)
+{
+    try {
+        // Validate input from form
+        $validatedData = $request->validate([
+            'submission_date' => 'required|date',
+            'circle' => 'required',
+            'region' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan_unik' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
+            'im3_outlet_id' => 'required|string',
+            'im3_outlet_name' => 'required',
+            '3id_qr_code' => 'nullable|string',
+            '3id_outlet_name' => 'required',
+            'service' => 'required|in:Done,Not',
+            'branding' => 'required|in:Done,Not',
+            'post_paid' => 'required|in:Done,Not',
+            'name_owner' => 'required',
+            'nik_owner' => 'required',
+            'npwp_owner' => 'required',
+            'email_owner' => 'required|email',
+            'pks' => 'nullable|file|mimes:pdf,jpeg,jpg,png',
+            'upload_branding' => 'nullable|file|mimes:pdf,jpeg,jpg,png',
+        ]);
 
-    public function delete($im3_outlet_id) {
-        $id_dec = Crypt::decrypt($im3_outlet_id);
-        $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->first();
+        $registered_partner = RegisteredPartner::where('im3_outlet_id', $im3_outlet_id)->firstOrFail();
 
-        if ($registered_partner) {
-            DeletedPartner::create([
-                'partner_id' => $registered_partner->id,
-                'alasan' => request()->input('reason'),
-                'submission_date' => $registered_partner->submission_date,
-                'circle' => $registered_partner->circle,
-                'region' => $registered_partner->region,
-                'kecamatan' => $registered_partner->kecamatan,
-                'kabupaten' => $registered_partner->kabupaten,
-                'longitude' => $registered_partner->longitude,
-                'latitude' => $registered_partner->latitude,
-                'im3_outlet_id' => $registered_partner->im3_outlet_id,
-                'im3_outlet_name' => $registered_partner->im3_outlet_name,
-                'qr_code' => $registered_partner->qr_code,
-                'outlet_name' => $registered_partner->outlet_name,
-                'created_at' => $registered_partner->created_at,
-                'updated_at' => $registered_partner->updated_at
-            ]);
+        // Update fields
+        $registered_partner->fill($validatedData);
 
-            $registered_partner->delete();
-
-            Alert::success('Berhasil', 'Data Berhasil Di Hapus!');
-        } else {
-            Alert::error('Gagal', 'Data tidak ditemukan!');
+        // Handle PKS file upload
+        if ($request->hasFile('pks')) {
+            $pksPath = public_path('pks');
+            if (!File::exists($pksPath)) {
+                File::makeDirectory($pksPath, 0755, true);
+            }
+            $pksFileName = $im3_outlet_id . '_pks.' . $request->file('pks')->getClientOriginalExtension();
+            $registered_partner->pks = $request->file('pks')->storeAs('pks', $pksFileName, 'public');
         }
 
-        return back();
+        // Handle Branding file upload
+        if ($request->hasFile('upload_branding')) {
+            $brandingPath = public_path('branding');
+            if (!File::exists($brandingPath)) {
+                File::makeDirectory($brandingPath, 0755, true);
+            }
+            $brandingFileName = $im3_outlet_id . '_branding.' . $request->file('upload_branding')->getClientOriginalExtension();
+            $registered_partner->upload_branding = $request->file('upload_branding')->storeAs('branding', $brandingFileName, 'public');
+        }
+
+        // Set value for im3_3id_users based on conditions
+        $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? 1 : 0;
+
+        // Save data
+        $registered_partner->save();
+
+        Alert::success('Success', 'Data successfully updated!');
+        return redirect()->route('registered-partner');
+    } catch (Exception $error) {
+        Log::error($error->getMessage());
+        Alert::error('Failed', 'An error occurred, please try again!');
+        return back()->withInput();
     }
+}
+
+public function delete($im3_outlet_id) {
+    $id_dec = Crypt::decrypt($im3_outlet_id);
+    $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->first();
+
+    if ($registered_partner) {
+        Log::info('Menyimpan data deleted partner:', [
+            'partner_id' => $registered_partner->id,
+            'alasan' => request()->input('reason'),
+            'submission_date' => $registered_partner->submission_date,
+            'circle' => $registered_partner->circle,
+            'region' => $registered_partner->region,
+            'kecamatan' => $registered_partner->kecamatan,
+            'kabupaten' => $registered_partner->kabupaten,
+            'kecamatan_unik' => $registered_partner->kecamatan_unik,
+            'longitude' => $registered_partner->longitude,
+            'latitude' => $registered_partner->latitude,
+            'im3_outlet_id' => $registered_partner->im3_outlet_id,
+            'im3_outlet_name' => $registered_partner->im3_outlet_name,
+            '3id_qr_code' => $registered_partner->{"3id_qr_code"},
+            '3id_outlet_name' => $registered_partner->{"3id_outlet_name"},
+            'service' => $registered_partner->service,
+            'branding' => $registered_partner->branding,
+            'post_paid' => $registered_partner->post_paid,
+            'pks' => $registered_partner->pks,
+            'upload_branding' => $registered_partner->upload_branding,
+            'name_owner' => $registered_partner->name_owner,
+            'nik_owner' => $registered_partner->nik_owner,
+            'npwp_owner' => $registered_partner->npwp_owner,
+            'email_owner' => $registered_partner->email_owner,
+            'im3_3id_users' => $registered_partner->im3_3id_users,
+        ]);
+        // Buat entry baru di DeletedPartner
+        DeletedPartner::create([
+            'partner_id' => $registered_partner->id,
+            'alasan' => request()->input('reason'), // Ambil alasan dari request
+            'submission_date' => $registered_partner->submission_date,
+            'circle' => $registered_partner->circle,
+            'region' => $registered_partner->region,
+            'kecamatan' => $registered_partner->kecamatan,
+            'kabupaten' => $registered_partner->kabupaten,
+            'kecamatan_unik' => $registered_partner->kecamatan_unik, // Tambahkan ini
+            'longitude' => $registered_partner->longitude,
+            'latitude' => $registered_partner->latitude,
+            'im3_outlet_id' => $registered_partner->im3_outlet_id ? $registered_partner->im3_outlet_id : null, // Sesuaikan nama field
+            'im3_outlet_name' => $registered_partner->im3_outlet_name,
+            '3id_qr_code' => $registered_partner->{"3id_qr_code"} ? $registered_partner->{"3id_qr_code"} : null, // Sesuaikan nama field
+            '3id_outlet_name' => $registered_partner->{"3id_outlet_name"}, // Sesuaikan nama field
+            'service' => $registered_partner->service, // Tambahkan ini
+            'branding' => $registered_partner->branding, // Tambahkan ini
+            'post_paid' => $registered_partner->post_paid, // Tambahkan ini
+            'pks' => $registered_partner->pks,
+            'upload_branding' => $registered_partner->upload_branding,
+            'name_owner' => $registered_partner->name_owner,
+            'nik_owner' => $registered_partner->nik_owner,
+            'npwp_owner' => $registered_partner->npwp_owner,
+            'email_owner' => $registered_partner->email_owner,
+            'im3_3id_users' => $registered_partner->im3_3id_users, // Tambahkan ini
+            'created_at' => $registered_partner->created_at,
+            'updated_at' => $registered_partner->updated_at
+        ]);
+
+        // Hapus data dari RegisteredPartner
+        $registered_partner->delete();
+
+        Alert::success('Berhasil', 'Data Berhasil Di Hapus!');
+    } else {
+        Alert::error('Gagal', 'Data tidak ditemukan!');
+    }
+
+    return back();
+}
 
 }

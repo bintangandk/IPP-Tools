@@ -53,12 +53,23 @@ class RegisteredPartnerFactory extends Factory
                 'Minahasa', 'Bone Bolango', 'Halmahera Tengah', 'Fakfak', 'Nias Selatan',
                 'Agam', 'Dairi'
             ]),
+            'kecamatan_unik' => fake()->word(),
             'longitude' => fake()->randomFloat(6, 95, 141),
             'latitude' => fake()->randomFloat(6, -11, 6),
             'im3_outlet_id' => fake()->word(),
             'im3_outlet_name' => fake()->word(),
-            'qr_code' => fake()->word(),
-            'outlet_name' => fake()->word(),
+            '3id_qr_code' => fake()->word(),
+            '3id_outlet_name' => fake()->word(),
+            'service' => fake()->randomElement(['Done', 'Not']),
+            'branding' => fake()->randomElement(['Done', 'Not']),
+            'post_paid' => fake()->randomElement(['Done', 'Not']),
+            'pks' => fake()->word(),
+            'upload_branding' => fake()->word(),
+            'name_owner' => fake()->name(),
+            'nik_owner' => fake()->numerify('################'),
+            'npwp_owner' => fake()->numerify('##.###.###.#-###.###'),
+            'email_owner' => fake()->safeEmail(),
+            'im3_3id_users' => fake()->randomElement([1, 0]),
         ];
     }
 }

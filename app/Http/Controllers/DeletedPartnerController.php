@@ -18,23 +18,36 @@ class DeletedPartnerController extends Controller
             $deletedPartner = DeletedPartner::where('partner_id', $id_dec)->first();
 
             if ($deletedPartner) {
+                // Simpan data ke tabel registered_partners
                 DB::table('registered_partners')->insert([
                     'id' => $deletedPartner->partner_id,
-                    'im3_outlet_id' => $deletedPartner->im3_outlet_id,
-                    'im3_outlet_name' => $deletedPartner->im3_outlet_name,
                     'submission_date' => $deletedPartner->submission_date,
                     'circle' => $deletedPartner->circle,
                     'region' => $deletedPartner->region,
                     'kecamatan' => $deletedPartner->kecamatan,
                     'kabupaten' => $deletedPartner->kabupaten,
+                    'kecamatan_unik' => $deletedPartner->kecamatan_unik, // Tambahkan kolom kecamatan_unik
                     'longitude' => $deletedPartner->longitude,
                     'latitude' => $deletedPartner->latitude,
-                    'qr_code' => $deletedPartner->qr_code,
-                    'outlet_name' => $deletedPartner->outlet_name,
-                    'created_at' => $deletedPartner->created_at,
-                    'updated_at' => $deletedPartner->updated_at,
+                    'im3_outlet_id' => $deletedPartner->im3_outlet_id,
+                    'im3_outlet_name' => $deletedPartner->im3_outlet_name,
+                    '3id_qr_code' => $deletedPartner->{"3id_qr_code"}, // Tambahkan kolom 3id_qr_code
+                    '3id_outlet_name' => $deletedPartner->{"3id_outlet_name"}, // Tambahkan kolom 3id_outlet_name
+                    'service' => $deletedPartner->service,
+                    'branding' => $deletedPartner->branding,
+                    'post_paid' => $deletedPartner->post_paid,
+                    'pks' => $deletedPartner->pks,
+                    'upload_branding' => $deletedPartner->upload_branding,
+                    'name_owner' => $deletedPartner->name_owner,
+                    'nik_owner' => $deletedPartner->nik_owner,
+                    'npwp_owner' => $deletedPartner->npwp_owner,
+                    'email_owner' => $deletedPartner->email_owner,
+                    'im3_3id_users' => $deletedPartner->im3_3id_users,
+                    'created_at' => now(), // Atur created_at menjadi waktu saat ini
+                    'updated_at' => now(), // Atur updated_at menjadi waktu saat ini
                 ]);
 
+                // Hapus data dari deleted_partners setelah berhasil di-restore
                 $deletedPartner->delete();
 
                 Log::info('Partner restored successfully', ['partner_id' => $deletedPartner->partner_id]);
@@ -49,5 +62,6 @@ class DeletedPartnerController extends Controller
             return redirect()->route('deleted-partner')->with('error', 'An error occurred while restoring the partner');
         }
     }
+
 
 }

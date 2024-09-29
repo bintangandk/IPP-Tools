@@ -141,16 +141,16 @@
                                                 <td class="text-center">{{ $item->region }}</td>
                                                 <td class="text-center">{{ $item->kecamatan }}</td>
                                                 <td class="text-center">{{ $item->kabupaten }}</td>
-                                                <td class="text-center">Kabupaten | Kecamatan</td>
+                                                <td class="text-center">{{ $item->kecamatan_unik }}</td>
                                                 <td class="text-center">{{ $item->longitude }}</td>
                                                 <td class="text-center">{{ $item->latitude }}</td>
                                                 <td class="text-center">{{ $item->im3_outlet_id }}</td>
                                                 <td class="text-center">{{ $item->im3_outlet_name }}</td>
-                                                <td class="text-center">{{ $item->qr_code }}</td>
-                                                <td class="text-center">{{ $item->outlet_name }}</td>
-                                                <td class="text-center"><label class="badge badge-success">Done</td>
-                                                <td class="text-center"><label class="badge badge-success">Done</td>
-                                                <td class="text-center"><label class="badge badge-success">Done</td>
+                                                <td class="text-center">{{ $item->{'3id_qr_code'} }}</td>
+                                                <td class="text-center">{{ $item->{'3id_outlet_name'} }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->service === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->service }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->branding === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->branding }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->post_paid === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->post_paid }}</td>
                                                 <td class="text-center">
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <a

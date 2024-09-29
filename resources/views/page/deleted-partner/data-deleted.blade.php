@@ -19,19 +19,23 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No</th>
-                                            <th class="text-center">ID</th>
-                                            <th class="text-center">Reason</th>
+                                            <th class="text-center">Partner ID</th>
+                                            <th class="text-center">Alasan</th>
                                             <th class="text-center">Submition Date</th>
                                             <th class="text-center">Circle</th>
                                             <th class="text-center">Region</th>
-                                            <th class="text-center">Subdistrict</th>
-                                            <th class="text-center">Regency</th>
-                                            <th class="text-center">Longitude</th>
+                                            <th class="text-center">Kecamatan</th>
+                                            <th class="text-center">Kabupaten</th>
+                                            <th class="text-center">Kecamatan Unik</th>
                                             <th class="text-center">Latitude</th>
+                                            <th class="text-center">Longitude</th>
                                             <th class="text-center">IM3 Outlet ID</th>
                                             <th class="text-center">IM3 Outlet Name</th>
                                             <th class="text-center">3ID QR Code</th>
                                             <th class="text-center">3ID Outlet Name</th>
+                                            <th class="text-center">Status Service</th>
+                                            <th class="text-center">Status Branding</th>
+                                            <th class="text-center">Post Paid</th>
                                             @if (Auth::user()->level == 'Admin')
                                                 <th class="text-center">Aksi</th>
                                             @endif
@@ -50,12 +54,16 @@
                                                 <td class="text-center">{{ $item->region }}</td>
                                                 <td class="text-center">{{ $item->kecamatan }}</td>
                                                 <td class="text-center">{{ $item->kabupaten }}</td>
+                                                <td class="text-center">{{ $item->kecamatan_unik }}</td>
                                                 <td class="text-center">{{ $item->longitude }}</td>
                                                 <td class="text-center">{{ $item->latitude }}</td>
                                                 <td class="text-center">{{ $item->im3_outlet_id }}</td>
                                                 <td class="text-center">{{ $item->im3_outlet_name }}</td>
-                                                <td class="text-center">{{ $item->qr_code }}</td>
-                                                <td class="text-center">{{ $item->outlet_name }}</td>
+                                                <td class="text-center">{{ $item->{'3id_qr_code'} }}</td>
+                                                <td class="text-center">{{ $item->{'3id_outlet_name'} }}</td>
+                                                <td class="text-center"><label class="badge {{ $item->service === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->service }}</td>
+                                                    <td class="text-center"><label class="badge {{ $item->branding === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->branding }}</td>
+                                                    <td class="text-center"><label class="badge {{ $item->post_paid === 'Done' ? 'badge-success' : 'badge-danger' }}">{{ $item->post_paid }}</td>
                                                 @if (Auth::user()->level == 'Admin')
                                                     <td class="text-center">
                                                         <form id="form"

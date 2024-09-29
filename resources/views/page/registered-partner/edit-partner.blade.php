@@ -8,113 +8,110 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Edit Partner</h4>
-                        <form class="forms-sample" method="POST" action="{{ route('registered-partner.editPost', ['im3_outlet_id' => $partner->im3_outlet_id]) }}">
+                        <form class="forms-sample" method="POST" action="{{ route('registered-partner.editPost', ['im3_outlet_id' => $partner->im3_outlet_id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="submission_date">Submition Date</label>
-                                <input value="{{ $partner->submission_date }}" name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
+                                <label for="submission_date">Submission Date</label>
+                                <input value="{{ $partner->submission_date }}" name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Choose Submission Date">
                             </div>
                             <div class="form-group">
                                 <label for="circle">Circle</label>
-                                <input value="{{ $partner->circle }}" name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
+                                <input value="{{ $partner->circle }}" name="circle" type="text" class="form-control" id="circle" placeholder="Enter Circle">
                             </div>
                             <div class="form-group">
                                 <label for="region">Region</label>
-                                <input value="{{ $partner->region }}" name="region" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah">
+                                <input value="{{ $partner->region }}" name="region" type="text" class="form-control" id="region" placeholder="Enter Region">
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Kecamatan</label>
-                                <input value="{{ $partner->kecamatan }}" name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
+                                <input value="{{ $partner->kecamatan }}" name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Enter Kecamatan">
                             </div>
                             <div class="form-group">
                                 <label for="kabupaten">Kabupaten</label>
-                                <input value="{{ $partner->kabupaten }}" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                                <input value="{{ $partner->kabupaten }}" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Enter Kabupaten">
                             </div>
                             <div class="form-group">
-                                <label for="kabupaten">Kecamatan Unik</label>
-                                <input value="#" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                                <label for="kecamatan_unik">Kecamatan Unik</label>
+                                <input value="{{ $partner->kecamatan_unik }}" name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Enter Unique Kecamatan">
                             </div>
                             <div class="form-group">
                                 <label for="longitude">Longitude</label>
-                                <input value="{{ $partner->longitude }}" name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
+                                <input value="{{ $partner->longitude }}" name="longitude" type="text" class="form-control" id="longitude" placeholder="Enter Longitude">
                             </div>
                             <div class="form-group">
                                 <label for="latitude">Latitude</label>
-                                <input value="{{ $partner->latitude }}" name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
+                                <input value="{{ $partner->latitude }}" name="latitude" type="text" class="form-control" id="latitude" placeholder="Enter Latitude">
                             </div>
                             <div class="form-group">
                                 <label for="im3_outlet_id">IM3 Outlet ID</label>
-                                <input value="{{ $partner->im3_outlet_id }}" name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
+                                <input value="{{ $partner->im3_outlet_id }}" name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Enter IM3 Outlet ID">
                             </div>
                             <div class="form-group">
-                                <label for="im3_outlet_name">IM3 Outlte Name</label>
-                                <input value="{{ $partner->im3_outlet_name }}" name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
+                                <label for="im3_outlet_name">IM3 Outlet Name</label>
+                                <input value="{{ $partner->im3_outlet_name }}" name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Enter IM3 Outlet Name">
                             </div>
                             <div class="form-group">
-                                <label for="qr_code">3ID QR Code</label>
-                                <input value="{{ $partner->qr_code }}" name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
+                                <label for="3id_qr_code">3ID QR Code</label>
+                                <input value="{{ $partner->{'3id_qr_code'} }}" name="3id_qr_code" type="text" class="form-control" id="3id_qr_code" placeholder="Enter 3ID QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">3ID Outlet Name</label>
-                                <input value="{{ $partner->outlet_name }}" name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
+                                <label for="3id_outlet_name">3ID Outlet Name</label>
+                                <input value="{{ $partner->{'3id_outlet_name'} }}" name="3id_outlet_name" type="text" class="form-control" id="3id_outlet_name" placeholder="Enter 3ID Outlet Name">
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Service</label>
+                                <label for="service">Service</label>
                                 <select name="service" class="form-control" id="service">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                    <option value="Done" {{ $partner->service === 'Done' ? 'selected' : '' }}>Done</option>
+                                    <option value="Not" {{ $partner->service !== 'Done' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Branding</label>
-                                <select name="status_branding" class="form-control" id="status_branding">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                <label for="branding">Branding</label>
+                                <select name="branding" class="form-control" id="branding">
+                                    <option value="Done" {{ $partner->branding === 'Done' ? 'selected' : '' }}>Done</option>
+                                    <option value="Not" {{ $partner->branding !== 'Done' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Post Paid</label>
-                                <select name="postpaid" class="form-control" id="postpaid">
-                                    <option>Select</option>
-                                    <option value="1">Done</option>
-                                    <option value="0">Not</option>
+                                <label for="post_paid">Post Paid</label>
+                                <select name="post_paid" class="form-control" id="post_paid">
+                                    <option value="Done" {{ $partner->post_paid === 'Done' ? 'selected' : '' }}>Done</option>
+                                    <option value="Not" {{ $partner->post_paid !== 'Done' ? 'selected' : '' }}>Not</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="upload_pks">Upload PKS</label>
+                                <label for="pks">Upload PKS</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="upload_pks">
-                                    <label class="custom-file-label" for="upload_pks">Pilih File</label>
+                                    <input type="file" class="custom-file-input" id="pks" name="pks">
+                                    <label class="custom-file-label" for="pks">Choose file</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="upload_branding">Upload Branding</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="upload_branding">
-                                    <label class="custom-file-label" for="upload_branding">Pilih File</label>
+                                    <input type="file" class="custom-file-input" id="upload_branding" name="upload_branding">
+                                    <label class="custom-file-label" for="upload_branding">Choose file</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name_owner">Name Owner</label>
-                                <input required name="name_owner" type="text" class="form-control" id="#" placeholder="Masukkan Nama Owner">
+                                <input value="{{ $partner->name_owner }}" name="name_owner" type="text" class="form-control" id="name_owner" placeholder="Enter Owner Name" required>
                             </div>
                             <div class="form-group">
-                                <label for="nik">NIK Owner</label>
-                                <input required name="nik" type="text" class="form-control" id="#" placeholder="Masukkan NIK Owner">
+                                <label for="nik_owner">NIK Owner</label>
+                                <input value="{{ $partner->nik_owner }}" name="nik_owner" type="text" class="form-control" id="nik_owner" placeholder="Enter Owner NIK" required>
                             </div>
                             <div class="form-group">
-                                <label for="npwp">NPWP Owner</label>
-                                <input required name="npwp" type="text" class="form-control" id="#" placeholder="Masukkan NPWP">
+                                <label for="npwp_owner">NPWP Owner</label>
+                                <input value="{{ $partner->npwp_owner }}" name="npwp_owner" type="text" class="form-control" id="npwp_owner" placeholder="Enter Owner NPWP" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Owner</label>
-                                <input required name="email" type="text" class="form-control" id="#" placeholder="Masukkan Email">
+                                <label for="email_owner">Email Owner</label>
+                                <input value="{{ $partner->email_owner }}" name="email_owner" type="email" class="form-control" id="email_owner" placeholder="Enter Owner Email" required>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{ url('registered-partner') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('registered-partner') }}" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>
