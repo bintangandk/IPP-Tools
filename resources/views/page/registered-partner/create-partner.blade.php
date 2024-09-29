@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="region">Region</label>
-                                <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }} >
+                                <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }}>
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Subdistrict</label>
@@ -47,12 +47,66 @@
                                 <input required name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
-                                <label for="qr_code">QR Code</label>
+                                <label for="qr_code">3ID QR Code</label>
                                 <input required name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
-                                <label for="outlet_name">Name Outlet</label>
+                                <label for="outlet_name">Name Outlet 3ID</label>
                                 <input required name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Status Service</label>
+                                <select name="service" class="form-control" id="service">
+                                    <option>Select</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Status Branding</label>
+                                <select name="status_branding" class="form-control" id="status_branding">
+                                    <option>Select</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Post Paid</label>
+                                <select name="postpaid" class="form-control" id="postpaid">
+                                    <option>Select</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="upload_pks">Upload PKS</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="upload_pks">
+                                    <label class="custom-file-label" for="upload_pks">Pilih File</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="upload_branding">Upload Branding</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="upload_branding">
+                                    <label class="custom-file-label" for="upload_branding">Pilih File</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name_owner">Name Owner</label>
+                                <input required name="name_owner" type="text" class="form-control" id="#" placeholder="Masukkan Nama Owner">
+                            </div>
+                            <div class="form-group">
+                                <label for="nik">NIK Owner</label>
+                                <input required name="nik" type="text" class="form-control" id="#" placeholder="Masukkan NIK Owner">
+                            </div>
+                            <div class="form-group">
+                                <label for="npwp">NPWP Owner</label>
+                                <input required name="npwp" type="text" class="form-control" id="#" placeholder="Masukkan NPWP">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Owner</label>
+                                <input required name="email" type="text" class="form-control" id="#" placeholder="Masukkan Email">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ url('registered-partner') }}" class="btn btn-light">Cancel</a>
