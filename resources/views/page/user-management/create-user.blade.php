@@ -13,27 +13,27 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputName1">User ID/NIK</label>
-                                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID/NIK">
+                                <input required type="text" class="form-control" id="user_id" name="user_id" placeholder="ID/NIK">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Full Name</label>
-                                <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Name">
+                                <input required type="text" class="form-control" id="full_name" name="full_name" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail3">Type</label>
-                                <input type="text" class="form-control" id="type" name="type" placeholder="Type">
+                                <input required type="text" class="form-control" id="type" name="type" placeholder="Type">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail3">Roles</label>
-                                <input type="text" class="form-control" id="roles" name="roles" placeholder="Type">
+                                <input required type="text" class="form-control" id="roles" name="roles" placeholder="Type">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Region</label>
-                                <input type="text" class="form-control" id="region" name="region" placeholder="Region">
+                                <input required type="text" class="form-control" id="region" name="region" placeholder="Region">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Teritory</label>
-                                <input type="text" class="form-control" id="teritory" name="teritory" placeholder="Teritor">
+                                <input required type="text" class="form-control" id="teritory" name="teritory" placeholder="Teritor">
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelectGender">User Status</label>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Password</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <input required type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                             <i class="bi bi-eye" id="toggleIcon"></i>

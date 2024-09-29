@@ -12,47 +12,47 @@
                             @csrf
                             <div class="form-group">
                                 <label for="im3_outlet_id">Outlet ID IM3</label>
-                                <input name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
+                                <input required name="im3_outlet_id" type="text" class="form-control" id="im3_outlet_id" placeholder="Masukkan Outlet ID IM3">
                             </div>
                             <div class="form-group">
                                 <label for="im3_outlet_name">Nama Outlet IM3</label>
-                                <input name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
+                                <input required name="im3_outlet_name" type="text" class="form-control" id="im3_outlet_name" placeholder="Masukkan Nama Outlet IM3">
                             </div>
                             <div class="form-group">
                                 <label for="submission_date">Tanggal Pengajuan</label>
-                                <input name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
+                                <input required name="submission_date" type="date" class="form-control" id="submission_date" placeholder="Pilih Tanggal Pengajuan">
                             </div>
                             <div class="form-group">
                                 <label for="circle">Lingkaran</label>
-                                <input name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
+                                <input required name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
                             </div>
                             <div class="form-group">
                                 <label for="region">Wilayah</label>
-                                <input name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }} >
+                                <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }} >
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Kecamatan</label>
-                                <input name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
+                                <input required name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
                             </div>
                             <div class="form-group">
                                 <label for="kabupaten">Kabupaten</label>
-                                <input name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                                <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
                             </div>
                             <div class="form-group">
                                 <label for="longitude">Garis Lintang</label>
-                                <input name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
+                                <input required name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
                             </div>
                             <div class="form-group">
                                 <label for="latitude">Garis Bujur</label>
-                                <input name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
+                                <input required name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
                                 <label for="qr_code">QR Code</label>
-                                <input name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
+                                <input required name="qr_code" type="text" class="form-control" id="qr_code" placeholder="Masukkan QR Code">
                             </div>
                             <div class="form-group">
                                 <label for="outlet_name">Nama Outlet</label>
-                                <input name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
+                                <input required name="outlet_name" type="text" class="form-control" id="outlet_name" placeholder="Masukkan Nama Outlet">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ url('registered-partner') }}" class="btn btn-light">Cancel</a>
