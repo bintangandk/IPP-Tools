@@ -14,8 +14,8 @@ class DashboardController extends Controller
         $count_registered_partner = RegisteredPartner::count();
         $count_user = User::count();
         $count_pks = RegisteredPartner::whereNotNull('pks')->count();
-        $count_branding = RegisteredPartner::where('branding', 'Done')->count();
-        $count_service = RegisteredPartner::where('service', 'Done')->count();
+        $count_branding = RegisteredPartner::where('branding', '1')->count();
+        $count_service = RegisteredPartner::where('service', '1')->count();
         $count_terminated = DeletedPartner::count();
 
         return view('page.dashboard')->with([
