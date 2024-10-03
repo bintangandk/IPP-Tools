@@ -17,6 +17,20 @@ class ManagementUserController extends Controller
     {
         $query = User::query();
 
+        if (request()->filled('search')) {
+            $search = request('search');
+            $query->where(function($query) use ($search) {
+                $query->where('user_id', 'LIKE', "%$search%")
+                      ->orWhere('full_name', 'LIKE', "%$search%")
+                      ->orWhere('type', 'LIKE', "%$search%")
+                      ->orWhere('region', 'LIKE', "%$search%")
+                      ->orWhere('teritory', 'LIKE', "%$search%")
+                      ->orWhere('roles', 'LIKE', "%$search%")
+                      ->orWhere('level', 'LIKE', "%$search%");
+                // Add other fields to search if necessary
+            });
+        }
+
         if ($request->filled('user_id')) {
             $query->where('user_id', 'like', '%' . $request->user_id . '%');
         }
@@ -35,7 +49,8 @@ class ManagementUserController extends Controller
         return view('page.user-management.data-user')->with([
             'title' => 'IPP Tools - Management User',
             'users' => $users,
-            'users_roles' => $users_roles
+            'users_roles' => $users_roles,
+            'search' => request('search')
         ]);
 
     }

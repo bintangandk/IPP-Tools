@@ -23,6 +23,19 @@ class RegisteredPartnerController extends Controller
         $user = Auth::user();
         $registered_partner = RegisteredPartner::query();
 
+        if (request()->filled('search')) {
+            $search = request('search');
+            $registered_partner->where(function($query) use ($search) {
+                $query->where('circle', 'LIKE', "%$search%")
+                      ->orWhere('region', 'LIKE', "%$search%")
+                      ->orWhere('kecamatan', 'LIKE', "%$search%")
+                      ->orWhere('kabupaten', 'LIKE', "%$search%")
+                      ->orWhere('im3_outlet_name', 'LIKE', "%$search%")
+                      ->orWhere('name_owner', 'LIKE', "%$search%");
+                // Add other fields to search if necessary
+            });
+        }
+
         if ($user->level == 'Admin') {
             $circle = RegisteredPartner::distinct()->pluck('circle');
             $region = RegisteredPartner::distinct()->pluck('region');
@@ -70,7 +83,8 @@ class RegisteredPartnerController extends Controller
             'circle' => $circle,
             'region' => $region,
             'area' => $area,
-            'sales_area' => $sales_area
+            'sales_area' => $sales_area,
+            'search' => request('search')
         ]);
     }
 

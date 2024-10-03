@@ -55,6 +55,16 @@
                                 Create New User
                             </a>
                         </div>
+                        <div class="py-3 d-flex justify-content-end w-30">
+                            <form method="GET" action="{{ route('management-user') }}">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" style="margin-left: 15px;">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
