@@ -106,7 +106,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
-                                {{ $users->links('pagination::bootstrap-5') }}
+                                {{ $users->appends(request()->input())->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
                     </div>

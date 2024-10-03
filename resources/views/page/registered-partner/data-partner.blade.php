@@ -181,7 +181,7 @@
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <!-- Bootstrap Pagination -->
                                 <div>
-                                    {{ $registered_partner->links('pagination::bootstrap-5') }} <!-- Use Bootstrap 5 pagination style -->
+                                    {{ $registered_partner->appends(request()->input())->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
