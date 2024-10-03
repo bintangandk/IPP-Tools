@@ -28,32 +28,7 @@ class RegisteredPartnerImport implements ToCollection, WithHeadingRow
 
             $registeredPartner = RegisteredPartner::where('im3_outlet_id', $row['im3_outlet_id'])->first();
 
-            if ($registeredPartner) {
-                // Update data jika outlet_id sudah ada
-                $registeredPartner->update([
-                    'submission_date' => $submissionDate, // Tanggal yang sudah dikonversi
-                    'circle' => $row['circle'],
-                    'region' => $row['region'],
-                    'kecamatan' => $row['kecamatan'],
-                    'kabupaten' => $row['kabupaten'],
-                    'kecamatan_unik' => $row['kecamatan_unik'],
-                    'longitude' => $longitude,
-                    'latitude' => $latitude,
-                    'im3_outlet_name' => $row['im3_outlet_name'],
-                    '3id_qr_code' => $row['3id_qr_code'],
-                    '3id_outlet_name' => $row['3id_outlet_name'],
-                    'service' => $row['service'],
-                    'branding' => $row['branding'],
-                    'post_paid' => $row['post_paid'],
-                    'upload_branding' => $row['upload_branding'],
-                    'pks' => $row['upload_pks'],
-                    'name_owner' => $row['nama_owner'],
-                    'nik_owner' => $row['nik_owner'],
-                    'npwp_owner' => $row['npwp_owner'],
-                    'email_owner' => $row['email_owner'],
-                    'im3_3id_users' => $im3IdUsers,
-                ]);
-            } else {
+         
                 // Buat data baru jika outlet_id belum ada
                 RegisteredPartner::create([
                     'submission_date' => $submissionDate, // Tanggal yang sudah dikonversi
@@ -79,7 +54,7 @@ class RegisteredPartnerImport implements ToCollection, WithHeadingRow
                     'email_owner' => $row['email_owner'],
                     'im3_3id_users' => $im3IdUsers,
                 ]);
-            }
+            
         }
     }
 
