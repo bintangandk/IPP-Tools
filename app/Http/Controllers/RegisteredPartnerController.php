@@ -144,19 +144,36 @@ class RegisteredPartnerController extends Controller
             if (!File::exists($pksPath)) {
                 File::makeDirectory($pksPath, 0755, true);
             }
+
+            // Buat nama file berdasarkan ID outlet atau default
             $pksFileName = ($validatedData['im3_outlet_id'] ?? 'default') . '_pks.' . $request->file('pks')->getClientOriginalExtension();
-            $registered_partner->pks = $request->file('pks')->storeAs('pks', $pksFileName, 'public');
+
+            // Simpan file ke direktori 'pks' di disk 'public'
+            $storedPath = $request->file('pks')->storeAs('pks', $pksFileName, 'public');
+
+            // Simpan URL file ke dalam database
+            $registered_partner->pks = url('storage/' . $storedPath);
+            $registered_partner->save();
+
 
             // Handle Branding file upload
             $brandingPath = public_path('branding');
             if (!File::exists($brandingPath)) {
                 File::makeDirectory($brandingPath, 0755, true);
             }
+
+            // Buat nama file berdasarkan ID outlet atau default
             $brandingFileName = ($validatedData['im3_outlet_id'] ?? 'default') . '_branding.' . $request->file('upload_branding')->getClientOriginalExtension();
-            $registered_partner->upload_branding = $request->file('upload_branding')->storeAs('branding', $brandingFileName, 'public');
+
+            // Simpan file ke direktori 'branding' di disk 'public'
+            $storedPath = $request->file('upload_branding')->storeAs('branding', $brandingFileName, 'public');
+
+            // Simpan URL file ke dalam database
+            $registered_partner->upload_branding = url('storage/' . $storedPath);
 
             // Save data
             $registered_partner->save();
+
 
             Alert::success('Success', 'Data successfully saved!');
             return redirect()->route('registered-partner');
@@ -251,30 +268,30 @@ class RegisteredPartnerController extends Controller
                 $pksPath = 'pks';
                 $pksFileName = $im3_outlet_id . '_pks.' . $request->file('pks')->getClientOriginalExtension();
                 $path = $request->file('pks')->storeAs($pksPath, $pksFileName, 'public');
-            
+
                 // Buat URL secara manual
                 $url = url('storage/' . $path); // Sesuaikan dengan struktur URL Anda
-            
+
                 // Simpan URL ke database
                 $registered_partner->pks = $url;
                 $registered_partner->save(); // Simpan data ke database
-            }                       
+            }
 
             // Handle Branding file upload
             if ($request->hasFile('upload_branding')) {
                 $brandingPath = 'branding'; // Path di dalam storage
                 $brandingFileName = $im3_outlet_id . '_branding.' . $request->file('upload_branding')->getClientOriginalExtension();
-                
+
                 // Simpan file dan dapatkan path
                 $path = $request->file('upload_branding')->storeAs($brandingPath, $brandingFileName, 'public');
-            
+
                 // Buat URL secara manual
                 $url = url('storage/' . $path); // Sesuaikan dengan struktur URL Anda
-            
+
                 // Simpan URL ke database
                 $registered_partner->upload_branding = $url;
                 $registered_partner->save(); // Simpan data ke database
-            }            
+            }
 
             // Set value for im3_3id_users based on conditions
             $registered_partner->im3_3id_users = (!empty($validatedData['im3_outlet_id']) && !empty($validatedData['3id_qr_code'])) ? '1' : '0';
