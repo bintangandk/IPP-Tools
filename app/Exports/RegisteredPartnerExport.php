@@ -5,12 +5,14 @@ namespace App\Exports;
 use App\Models\RegisteredPartner;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredPartnerExport implements FromCollection, WithHeadings
 {
     protected $circle, $region, $area, $sales_area, $userLevel;
 
-    public function __construct($circle, $region, $area, $sales_area, $userLevel) {
+    public function __construct($circle, $region, $area, $sales_area, $userLevel)
+    {
         $this->circle = $circle;
         $this->region = $region;
         $this->area = $area;
@@ -49,12 +51,29 @@ class RegisteredPartnerExport implements FromCollection, WithHeadings
         }
 
         return $query->select([
-            'submission_date', 'circle', 'region', 'kecamatan', 'kabupaten',
-            'kecamatan_unik', 'longitude', 'latitude', 'im3_outlet_id',
-            'im3_outlet_name', '3id_qr_code', '3id_outlet_name',
-            'service', 'branding', 'post_paid', 'pks',
-            'upload_branding', 'name_owner', 'nik_owner',
-            'npwp_owner', 'email_owner', 'im3_3id_users',
+            'submission_date',
+            'circle',
+            'region',
+            'kecamatan',
+            'kabupaten',
+            'kecamatan_unik',
+            'longitude',
+            'latitude',
+            'im3_outlet_id',
+            'im3_outlet_name',
+            '3id_qr_code',
+            '3id_outlet_name',
+            'service',
+            'branding',
+            'post_paid',
+            'pks',
+            'upload_branding',
+            'name_owner',
+            'nik_owner',
+            'npwp_owner',
+            'email_owner',
+            'im3_3id_users',
+            'status_pks'
         ])->get();
     }
 
@@ -83,6 +102,7 @@ class RegisteredPartnerExport implements FromCollection, WithHeadings
             'NPWP_Owner',
             'Email_Owner',
             'IM3_3ID_Users',
+            'status_pks'
         ];
     }
 }

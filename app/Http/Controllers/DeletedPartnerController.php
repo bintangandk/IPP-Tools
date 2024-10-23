@@ -35,6 +35,7 @@ class DeletedPartnerController extends Controller
                     '3id_outlet_name' => $deletedPartner->{"3id_outlet_name"}, // Tambahkan kolom 3id_outlet_name
                     'service' => $deletedPartner->service,
                     'branding' => $deletedPartner->branding,
+                    'status_pks' => $deletedPartner->status_pks,
                     'post_paid' => $deletedPartner->post_paid,
                     'pks' => $deletedPartner->pks,
                     'upload_branding' => $deletedPartner->upload_branding,

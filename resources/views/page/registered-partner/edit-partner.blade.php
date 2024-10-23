@@ -74,6 +74,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="status_pks">PKS</label>
+                                <select name="status_pks" class="form-control" id="status_pks">
+                                    <option value="1" {{ $partner->status_pks === '1' ? 'selected' : '' }}>Done</option>
+                                    <option value="0" {{ $partner->status_pks !== '1' ? 'selected' : '' }}>Not</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="post_paid">Post Paid</label>
                                 <select name="post_paid" class="form-control" id="post_paid">
                                     <option value="1" {{ $partner->post_paid === '1' ? 'selected' : '' }}>Done</option>

@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('npwp_owner')->nullable();
             $table->string('email_owner')->nullable();
             $table->string('im3_3id_users')->nullable();
+            $table->string('status_pks')->nullable();
             $table->timestamps();
         });
     }

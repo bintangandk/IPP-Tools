@@ -75,6 +75,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="status_pks">PKS</label>
+                                <select required name="status_pks" class="form-control" id="status_pks">
+                                    <option value="" disabled selected>Pilih Status</option>
+                                    <option value="1">Done</option>
+                                    <option value="0">Not</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="post_paid">PostPaid</label>
                                 <select required name="post_paid" class="form-control" id="post_paid">
                                     <option value="" disabled selected>Pilih Status</option>

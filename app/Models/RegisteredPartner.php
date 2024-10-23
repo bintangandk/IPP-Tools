@@ -32,5 +32,6 @@ class RegisteredPartner extends Model
         'npwp_owner',
         'email_owner',
         'im3_3id_users',
+        'status_pks'
     ];
 }

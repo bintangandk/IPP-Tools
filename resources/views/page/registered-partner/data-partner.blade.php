@@ -140,6 +140,7 @@
                                         <th class="text-center">3ID Outlet Name</th>
                                         <th class="text-center">Status Service</th>
                                         <th class="text-center">Status Branding</th>
+                                        <th class="text-center">Status PKS</th>
                                         <th class="text-center">Post Paid</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -164,6 +165,12 @@
                                         <td class="text-center">{{ $item->{'3id_outlet_name'} }}</td>
                                         <td class="text-center"><label class="badge {{ $item->service === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->service == '1' ? 'Done' : 'Not' }}</td>
                                         <td class="text-center"><label class="badge {{ $item->branding === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->branding == '1' ? 'Done' : 'Not' }}</td>
+                                        <!-- <td class="text-center">
+                                            <label class="badge {{ $item->pks ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $item->pks ? 'Done' : 'Not' }}
+                                            </label>
+                                        </td> -->
+                                        <td class="text-center"><label class="badge {{ $item->status_pks === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->status_pks == '1' ? 'Done' : 'Not' }}</td>
                                         <td class="text-center"><label class="badge {{ $item->post_paid === '1' ? 'badge-success' : 'badge-danger' }}">{{ $item->post_paid == '1' ? 'Done' : 'Not' }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center align-items-center">
