@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets/images/chrome-favicon.png') }}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
   <style>
     .btn-spacing {
@@ -60,6 +61,21 @@
       /* Light yellow color */
       color: #000;
       /* Dark text color for better contrast */
+    }
+    /* Agar Select2 mengikuti style form-control Bootstrap */
+    .select2-container .select2-selection--single {
+        height: calc(2.25rem + 2px); /* Sesuaikan dengan tinggi form-control Bootstrap 4 */
+        padding: .375rem .75rem;
+        border: 1px solid #ced4da; /* Border sama dengan form-control Bootstrap */
+        border-radius: .25rem; /* Radius yang sama dengan form-control */
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 2.25rem; /* Sesuaikan dengan tinggi field Bootstrap */
+        padding-left: 0.75rem; /* Padding kiri agar teks tidak terlalu rapat */
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: calc(2.25rem + 2px);
+        top: 0px; /* Pastikan panah berada di posisi yang benar */
     }
   </style>
 </head>
@@ -104,6 +120,11 @@
   <script src="{{ asset('assets/js/dashboard.js') }}"></script>
   <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+  
 
   @include('sweetalert::alert')
 </body>

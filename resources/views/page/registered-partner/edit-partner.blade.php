@@ -17,19 +17,59 @@
                             </div>
                             <div class="form-group">
                                 <label for="circle">Circle</label>
-                                <input value="{{ $partner->circle }}" name="circle" type="text" class="form-control" id="circle" placeholder="Enter Circle">
+                                <select required name="circle" class="form-control" id="circle">
+                                    <option value="" disabled selected>Pilih Circle</option>
+                                    @foreach ($circle as $item)
+                                    <option value="{{ $item }}" {{ $item == $partner->circle ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="region">Region</label>
-                                <input value="{{ $partner->region }}" name="region" type="text" class="form-control" id="region" placeholder="Enter Region">
+                                <select
+                                    required
+                                    name="region"
+                                    class="form-control"
+                                    id="region"
+                                    {{ Auth::user()->level == 'User' ? 'readonly disabled' : '' }}>
+
+                                    @if(Auth::user()->level == 'User')
+                                    <!-- Jika level user adalah 'User', maka hanya ada satu opsi yang dipilih -->
+                                    <option value="{{ Auth::user()->region }}" selected>{{ Auth::user()->region }}</option>
+                                    @else
+                                    <!-- Jika level user bukan 'User', tampilkan semua opsi dari database -->
+                                    <option value="" disabled selected>Pilih Region</option>
+                                    @foreach ($region as $item)
+                                    <option value="{{ $item }}" {{ $item == $partner->region ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                    @endif
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Kecamatan</label>
-                                <input value="{{ $partner->kecamatan }}" name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Enter Kecamatan">
+                                <select required name="kecamatan" class="form-control" id="kecamatan">
+                                    <option value="" disabled selected>Pilih Kecamatan</option>
+                                    @foreach ($sales_area as $item)
+                                    <option value="{{ $item }}" {{ $item == $partner->kecamatan ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="kabupaten">Kabupaten</label>
-                                <input value="{{ $partner->kabupaten }}" name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Enter Kabupaten">
+                                <select required name="kabupaten" class="form-control" id="kabupaten">
+                                    <option value="" disabled selected>Pilih Kabupaten</option>
+                                    @foreach ($area as $item)
+                                    <option value="{{ $item }}" {{ $item == $partner->kabupaten ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan_unik">Kecamatan Unik</label>
@@ -152,12 +192,50 @@
 </script>
 
 <script>
-    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
         var fileName = e.target.files[0].name;
         var nextSibling = e.target.nextElementSibling;
         nextSibling.innerText = fileName;
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const selectElement = $('#region');
+        selectElement.select2({
+            placeholder: "Masukkan Region",
+            allowClear: true,
+            width: '100%'
+        });
+
+        // Nonaktifkan select2 jika user level adalah 'User'
+        @if(Auth::user()-> level == 'User')
+        selectElement.prop('disabled', true);
+        @endif
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#kabupaten').select2({
+            placeholder: "Masukkan Wilayah",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#kecamatan').select2({
+            placeholder: "Masukkan Wilayah",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
+
 
 @include('sweetalert::alert')
 @endsection

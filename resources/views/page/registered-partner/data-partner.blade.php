@@ -49,8 +49,7 @@
                                     <div class="col-md-4 d-flex flex-column">
                                         <label for="userIdInput1">Area</label>
                                         <select name="area" class="form-control" id="area">
-                                            <option value="semua" {{ request('area') == 'semua' ? 'selected' : '' }}>
-                                                Semua</option>
+                                            <option value="semua" {{ request('area') == 'semua' ? 'selected' : '' }}>Semua</option>
                                             @foreach ($area as $item)
                                             <option value="{{ $item }}"
                                                 {{ request('area') == $item ? 'selected' : '' }}>

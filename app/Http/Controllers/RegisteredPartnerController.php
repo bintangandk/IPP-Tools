@@ -23,6 +23,9 @@ class RegisteredPartnerController extends Controller
         $user = Auth::user();
         $registered_partner = RegisteredPartner::query();
 
+        // Order data by the most recent first
+        $registered_partner->orderBy('created_at', 'desc');
+
         if (request()->filled('search')) {
             $search = request('search');
             $registered_partner->where(function ($query) use ($search) {
@@ -90,8 +93,18 @@ class RegisteredPartnerController extends Controller
 
     public function create()
     {
+        $circle = RegisteredPartner::distinct('circle')->pluck('circle');
+        $region = RegisteredPartner::distinct('region')->pluck('region');
+        $area = RegisteredPartner::distinct('kabupaten')->pluck('kabupaten');
+        $sales_area = RegisteredPartner::distinct('kecamatan')->pluck('kecamatan');
+
         return view('page.registered-partner.create-partner')->with([
             'title' => 'Create New Partner',
+            'circle' => $circle,
+            'region' => $region,
+            'area' => $area,
+            'sales_area' => $sales_area,
+
         ]);
     }
 
@@ -222,12 +235,21 @@ class RegisteredPartnerController extends Controller
 
     public function edit($im3_outlet_id)
     {
+        $circle = RegisteredPartner::distinct('circle')->pluck('circle');
+        $region = RegisteredPartner::distinct('region')->pluck('region');
+        $area = RegisteredPartner::distinct('kabupaten')->pluck('kabupaten');
+        $sales_area = RegisteredPartner::distinct('kecamatan')->pluck('kecamatan');
+
         $id_dec = Crypt::decrypt($im3_outlet_id);
         $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->first();
         return view('page.registered-partner.edit-partner')->with([
             'title' => 'Edit Partner',
             'partner' => $registered_partner,
-            'id_dec' => $id_dec
+            'id_dec' => $id_dec,
+            'circle' => $circle,
+            'region' => $region,
+            'area' => $area,
+            'sales_area' => $sales_area
         ]);
     }
 

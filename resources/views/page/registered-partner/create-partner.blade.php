@@ -16,30 +16,59 @@
                             </div>
                             <div class="form-group">
                                 <label for="circle">Circle</label>
-                                <input required name="circle" type="text" class="form-control" id="circle" placeholder="Masukkan Lingkaran">
+                                <select required name="circle" class="form-control" id="circle">
+                                    <option value="" disabled selected>Pilih Circle</option>
+                                    @foreach ($circle as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="region">Region</label>
-                                <input required name="region" value="{{ Auth::user()->level == 'User' ? Auth::user()->region : '' }}" type="text" class="form-control" id="region" placeholder="Masukkan Wilayah" {{ Auth::user()->level == 'User' ? 'readonly' : '' }}>
+                                <select
+                                    required
+                                    name="region"
+                                    class="form-control"
+                                    id="region"
+                                    {{ Auth::user()->level == 'User' ? 'readonly disabled' : '' }}>
+                                    @if(Auth::user()->level == 'User')
+                                    <option value="{{ Auth::user()->region }}">{{ Auth::user()->region }}</option>
+                                    @else
+                                    <option value="" disabled selected></option>
+                                    @foreach ($region as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan">Kecamatan</label>
-                                <input required name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukkan Kecamatan">
+                                <select required name="kecamatan" class="form-control" id="kecamatan">
+                                    <option value="" disabled selected>Pilih Kecamatan</option>
+                                    @foreach ($sales_area as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="kabupaten">Kabupaten</label>
-                                <input required name="kabupaten" type="text" class="form-control" id="kabupaten" placeholder="Masukkan Kabupaten">
+                                <select required name="kabupaten" class="form-control" id="kabupaten">
+                                    <option value="" disabled selected>Pilih Kabupaten</option>
+                                    @foreach ($area as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="kecamatan_unik">Kecamatan Unik</label>
+                                <label for="kecamatan_unik">Kecamatan Unik ( *Format Pengisian Kecamatan|Kabupaten)</label>
                                 <input required name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Masukkan Kecamatan Unik">
                             </div>
                             <div class="form-group">
-                                <label for="longitude">Longitude</label>
+                                <label for="longitude">Longitude (*Contoh Pengisian Longitude 100.1234590)</label>
                                 <input required name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
                             </div>
                             <div class="form-group">
-                                <label for="latitude">Latitude</label>
+                                <label for="latitude">Latitude (*Contoh Pengisian Latitude 100.1234590)</label>
                                 <input required name="latitude" type="text" class="form-control" id="latitude" placeholder="Masukkan Garis Bujur">
                             </div>
                             <div class="form-group">
@@ -155,12 +184,51 @@
 </script>
 
 <script>
-    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
         var fileName = e.target.files[0].name;
         var nextSibling = e.target.nextElementSibling;
         nextSibling.innerText = fileName;
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const selectElement = $('#region');
+        selectElement.select2({
+            placeholder: "Masukkan Region",
+            allowClear: true,
+            width: '100%'
+        });
+
+        // Nonaktifkan select2 jika user level adalah 'User'
+        @if(Auth::user()->level == 'User')
+            selectElement.prop('disabled', true);
+        @endif
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#kabupaten').select2({
+            placeholder: "Masukkan Wilayah",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#kecamatan').select2({
+            placeholder: "Masukkan Wilayah",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
+
+
 
 @include('sweetalert::alert')
 @endsection

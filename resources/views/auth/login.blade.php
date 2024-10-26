@@ -43,7 +43,7 @@
                             <form class="pt-3" method="POST" action="{{ route('login.post') }}" id="form">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="number" name="user_id" class="form-control form-control-lg" id="user_id" placeholder="User ID">
+                                    <input type="text" name="user_id" class="form-control form-control-lg" id="user_id" placeholder="User ID">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password">
