@@ -73,8 +73,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="kecamatan_unik">Kecamatan Unik</label>
-                                <input value="{{ $partner->kecamatan_unik }}" name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Enter Unique Kecamatan">
+                                <select required name="kecamatan_unik" class="form-control" id="kecamatan_unik">
+                                    <option value="" disabled selected>Pilih Kabupaten</option>
+                                    @foreach ($kecamatan_unik as $item)
+                                    <option value="{{ $item }}" {{ $item == $partner->kecamatan_unik ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <!-- <div class="form-group">
+                                <label for="kecamatan_unik">Kecamatan Unik</label>
+                                <input value="{{ $partner->kecamatan_unik }}" name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Enter Unique Kecamatan">
+                            </div> -->
                             <div class="form-group">
                                 <label for="longitude">Longitude</label>
                                 <input value="{{ $partner->longitude }}" name="longitude" type="text" class="form-control" id="longitude" placeholder="Enter Longitude">
@@ -236,6 +247,15 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#kecamatan_unik').select2({
+            placeholder: "Pilih Kecamatan Unik",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
 
 @include('sweetalert::alert')
 @endsection

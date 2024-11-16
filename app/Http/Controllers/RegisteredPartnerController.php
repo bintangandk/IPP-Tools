@@ -6,6 +6,7 @@ use App\Exports\RegisteredPartnerExport;
 use App\Imports\RegisteredPartnerImport;
 use App\Models\DeletedPartner;
 use App\Models\RegisteredPartner;
+use App\Models\Teritory;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,17 +94,19 @@ class RegisteredPartnerController extends Controller
 
     public function create()
     {
-        $circle = RegisteredPartner::distinct('circle')->pluck('circle');
-        $region = RegisteredPartner::distinct('region')->pluck('region');
-        $area = RegisteredPartner::distinct('kabupaten')->pluck('kabupaten');
-        $sales_area = RegisteredPartner::distinct('kecamatan')->pluck('kecamatan');
+        $circle = Teritory::distinct('circle')->pluck('circle');
+        $region = Teritory::distinct('region')->pluck('region');
+        $kabupaten = Teritory::distinct('kabupaten')->pluck('kabupaten');
+        $kecamatan = Teritory::distinct('kecamatan')->pluck('kecamatan');
+        $kecamatan_unik = Teritory::distinct('kecamatan_unik')->pluck('kecamatan_unik');
 
         return view('page.registered-partner.create-partner')->with([
             'title' => 'Create New Partner',
             'circle' => $circle,
             'region' => $region,
-            'area' => $area,
-            'sales_area' => $sales_area,
+            'kabupaten' => $kabupaten,
+            'kecamatan' => $kecamatan,
+            'kecamatan_unik' => $kecamatan_unik,
 
         ]);
     }
@@ -235,10 +238,11 @@ class RegisteredPartnerController extends Controller
 
     public function edit($im3_outlet_id)
     {
-        $circle = RegisteredPartner::distinct('circle')->pluck('circle');
-        $region = RegisteredPartner::distinct('region')->pluck('region');
-        $area = RegisteredPartner::distinct('kabupaten')->pluck('kabupaten');
-        $sales_area = RegisteredPartner::distinct('kecamatan')->pluck('kecamatan');
+        $circle = Teritory::distinct('circle')->pluck('circle');
+        $region = Teritory::distinct('region')->pluck('region');
+        $area = Teritory::distinct('kabupaten')->pluck('kabupaten');
+        $sales_area = Teritory::distinct('kecamatan')->pluck('kecamatan');
+        $kecamatan_unik = Teritory::distinct('kecamatan_unik')->pluck('kecamatan_unik');
 
         $id_dec = Crypt::decrypt($im3_outlet_id);
         $registered_partner = RegisteredPartner::where('im3_outlet_id', $id_dec)->first();
@@ -249,7 +253,8 @@ class RegisteredPartnerController extends Controller
             'circle' => $circle,
             'region' => $region,
             'area' => $area,
-            'sales_area' => $sales_area
+            'sales_area' => $sales_area,
+            'kecamatan_unik' => $kecamatan_unik,
         ]);
     }
 

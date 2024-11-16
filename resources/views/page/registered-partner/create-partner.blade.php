@@ -45,7 +45,7 @@
                                 <label for="kecamatan">Kecamatan</label>
                                 <select required name="kecamatan" class="form-control" id="kecamatan">
                                     <option value="" disabled selected>Pilih Kecamatan</option>
-                                    @foreach ($sales_area as $item)
+                                    @foreach ($kecamatan as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
@@ -54,15 +54,24 @@
                                 <label for="kabupaten">Kabupaten</label>
                                 <select required name="kabupaten" class="form-control" id="kabupaten">
                                     <option value="" disabled selected>Pilih Kabupaten</option>
-                                    @foreach ($area as $item)
+                                    @foreach ($kabupaten as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="kecamatan_unik">Kecamatan_unik</label>
+                                <select required name="kecamatan_unik" class="form-control" id="kecamatan_unik">
+                                    <option value="" disabled selected>Pilih Kecamatan unik</option>
+                                    @foreach ($kecamatan_unik as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- <div class="form-group">
                                 <label for="kecamatan_unik">Kecamatan Unik ( *Format Pengisian Kecamatan|Kabupaten)</label>
                                 <input required name="kecamatan_unik" type="text" class="form-control" id="kecamatan_unik" placeholder="Masukkan Kecamatan Unik">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="longitude">Longitude (*Contoh Pengisian Longitude 100.1234590)</label>
                                 <input required name="longitude" type="text" class="form-control" id="longitude" placeholder="Masukkan Garis Lintang">
@@ -220,8 +229,18 @@
 
 <script>
     $(document).ready(function() {
-        $('#kecamatan').select2({
+        $('#kecamatan_unik').select2({
             placeholder: "Masukkan Wilayah",
+            allowClear: true,
+            width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#kecamatan').select2({
+            placeholder: "Pilih Kecamatan Unik",
             allowClear: true,
             width: '100%' // Ini penting agar Select2 menyesuaikan dengan lebar form-control Bootstrap
         });
