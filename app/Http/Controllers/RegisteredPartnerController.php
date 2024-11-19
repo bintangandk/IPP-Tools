@@ -114,6 +114,11 @@ class RegisteredPartnerController extends Controller
     public function createPost(Request $request)
     {
         try {
+
+            // Override 'region' jika role user adalah 'User'
+            if (Auth::user()->level == 'User') {
+                $request->merge(['region' => Auth::user()->region]);
+            }
             // Validate input from form
             $validatedData = $request->validate([
                 'submission_date' => 'required|date',
@@ -142,6 +147,8 @@ class RegisteredPartnerController extends Controller
 
             // Create instance of RegisteredPartner model
             $registered_partner = new RegisteredPartner();
+
+            $registered_partner->fill($validatedData);
 
             // Fill all columns with validated data, except for nullable fields
             $registered_partner->fill(array_filter($validatedData, function ($value) {

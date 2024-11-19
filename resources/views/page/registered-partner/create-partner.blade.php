@@ -32,9 +32,11 @@
                                     id="region"
                                     {{ Auth::user()->level == 'User' ? 'readonly disabled' : '' }}>
                                     @if(Auth::user()->level == 'User')
-                                    <option value="{{ Auth::user()->region }}">{{ Auth::user()->region }}</option>
+                                    <!-- Untuk User, region otomatis terisi sesuai dengan region mereka -->
+                                    <option value="{{ Auth::user()->region }}" selected>{{ Auth::user()->region }}</option>
                                     @else
-                                    <option value="" disabled selected></option>
+                                    <!-- Untuk Admin, region dapat dipilih dari data region -->
+                                    <option value="" disabled selected>Pilih Region</option>
                                     @foreach ($region as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
@@ -204,16 +206,19 @@
 <script>
     $(document).ready(function() {
         const selectElement = $('#region');
+        const isUser = "{{ Auth::user()->level }}" === "User";
+
+        // Inisialisasi select2
         selectElement.select2({
             placeholder: "Masukkan Region",
             allowClear: true,
             width: '100%'
         });
 
-        // Nonaktifkan select2 jika user level adalah 'User'
-        @if(Auth::user()->level == 'User')
+        // Jika role user adalah 'User', disable select2
+        if (isUser) {
             selectElement.prop('disabled', true);
-        @endif
+        }
     });
 </script>
 
